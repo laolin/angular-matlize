@@ -52,16 +52,18 @@ body {
   color:#888 !important;
 }
 
-
+.main-header_main{
+    float:left;
+    width:100% !important;
+    color:#fff;
+}
 
 .round-search {
     border-radius: 15px;
     border:1px solid #f90;
-    background-color:#eee;
+    background-color:#fff;
     margin:0 auto !important; 
     padding:0 30px !important;
-    float:left;
-    width:100% !important;
     color:#f90;
 
   outline: 0;
