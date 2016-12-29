@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" ng-app="myApp" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+  <title ng-bind='appInfo.pageTitle'>Welcome</title>
+  <meta name="description" content="">
+  
+  
+  <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/lib/materialize-0.97.8/css/materialize.min.css">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+    
+  
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="index.config.js"></script>
+
+</head>
+<body>
+    
+  <header id="main-header">
+    <div class="main-header_content" ng-controller='uiHeader'>
+      <div class='main-header_left'><img ng-src='{{logoUri}}'/></div>
+      <div class="round-search">
+        <div class='round-search_icon'>
+          <i class='fa fa-search' ng-click="startSearch()"></i>
+        </div>
+        <div class='round-search_cancel' ng-if='searchWord'>
+          <i class='fa fa-times-circle' ng-click="clearSearchWord()"></i>
+        </div>
+        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && startSearch()"
+           ng-model="searchWord" uib-typeahead="wd in searchList | filter:$viewValue | limitTo:8" />
+      </div>
+      <div class='main-header_right'> 
+        <div ssclass="input-field col s10">
+          <select ng-model="city" class="mini">
+            <option ng-repeat="c in citys" value="{{c}}">{{c}}</option>
+          </select>
+        </div>
+  
+      </div> 
+    </div>
+  </header>
+  <div id="main-container">
+      <div ng-view></div>
+  </div>
+  <footer id="main-footer" class="main-tabs">
+     <div class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
+     <div class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
+  </footer>
+
+  <script src="assets/lib/angular-1.5.8/angular.js"></script>
+  <script src="assets/lib/angular-1.5.8/angular-route.js"></script>
+  <script src="assets/lib/angular-1.5.8/angular-resource.js"></script>
+  <script src="assets/lib/angular-1.5.8/angular-animate.min.js"></script>
+  <script src="assets/lib/angular-1.5.8/angular-aria.min.js"></script>
+  <script src="assets/lib/angular-1.5.8/angular-messages.min.js"></script>
+ 
+  <script src="assets/lib/jquery/jquery-2.1.4.min.js"></script>
+  <script src="assets/lib/materialize-0.97.8/js/materialize.min.js"></script>
+
+  
+  <script src="modules/index/index.module.js"></script>
+  <script src="modules/ui-header/ui-header.module.js"></script>
+  <script src="modules/ui-header/ui-header.controller.js"></script>
+
+  <script src="modules/app.module.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script>
+  </script>
+</body>
+</html>
