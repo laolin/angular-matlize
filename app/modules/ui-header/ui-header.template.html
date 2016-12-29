@@ -1,0 +1,19 @@
+      <div class='main-header_left'><img ng-src='{{$ctrl.headData.logoUri}}'/></div>
+      <div class="main-header_main round-search">
+        <div class='round-search_icon'>
+          <i class='fa fa-search' ng-click="$ctrl.headData.startSearch()"></i>
+        </div>
+        <div class='round-search_cancel' ng-if='$ctrl.headData.searchWord'>
+          <i class='fa fa-times-circle' ng-click="$ctrl.headData.clearSearchWord()"></i>
+        </div>
+        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.headData.startSearch()"
+           ng-model="$ctrl.headData.searchWord" uib-typeahead="wd in $ctrl.headData.searchList | filter:$viewValue | limitTo:8" />
+      </div>
+      <div class='main-header_right'> 
+        <div>
+          <select ng-model="$ctrl.headData.city" class="mini">
+            <option ng-repeat="c in $ctrl.headData.citys" value="{{c}}">{{c}}</option>
+          </select>
+        </div>
+  
+      </div> 

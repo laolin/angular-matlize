@@ -2,6 +2,6 @@
 (function () {
   
   $(function(){
-    $('select').material_select();
+    //$('select').material_select();
   });
 })();

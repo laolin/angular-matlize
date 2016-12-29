@@ -24,26 +24,8 @@
 <body>
     
   <header id="main-header">
-    <div class="main-header_content" ng-controller='uiHeader'>
-      <div class='main-header_left'><img ng-src='{{logoUri}}'/></div>
-      <div class="main-header_main round-search">
-        <div class='round-search_icon'>
-          <i class='fa fa-search' ng-click="startSearch()"></i>
-        </div>
-        <div class='round-search_cancel' ng-if='searchWord'>
-          <i class='fa fa-times-circle' ng-click="clearSearchWord()"></i>
-        </div>
-        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && startSearch()"
-           ng-model="searchWord" uib-typeahead="wd in searchList | filter:$viewValue | limitTo:8" />
-      </div>
-      <div class='main-header_right'> 
-        <div ssclass="input-field col s10">
-          <select ng-model="city" class="mini">
-            <option ng-repeat="c in citys" value="{{c}}">{{c}}</option>
-          </select>
-        </div>
-  
-      </div> 
+    <div class="main-header_content" ng-controller='uiHeader as ui'>
+      <myc-ui-header head-data='ui.headData'></myc-ui-header>
     </div>
   </header>
   <div id="main-container">
@@ -67,7 +49,7 @@
   
   <script src="modules/index/index.module.js"></script>
   <script src="modules/ui-header/ui-header.module.js"></script>
-  <script src="modules/ui-header/ui-header.controller.js"></script>
+  <script src="modules/ui-header/ui-header.component.js"></script>
 
   <script src="modules/app.module.js"></script>
   <script src="assets/js/common.js"></script>
