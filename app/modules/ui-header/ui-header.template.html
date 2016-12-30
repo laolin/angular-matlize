@@ -1,5 +1,5 @@
 
-    <div class="main-header_wrapper" ng-if='$ctrl.headData.type == 1'>
+    <div class="main-header_wrapper" ng-show='$ctrl.headData.type == 1'>
       <div class='main-header_left' style='background:url("{{$ctrl.headData.logoUri}}") #f90 no-repeat;background-position: center;'/></div>
       <div class="main-header_main round-search">
         <div class='round-search_icon'>
@@ -20,7 +20,7 @@
       </div> 
     </div>
     
-    <div class="main-header_wrapper" ng-if='$ctrl.headData.type!=1'>
+    <div class="main-header_wrapper" ng-show='$ctrl.headData.type!=1'>
       <div class='main-header_left'>
         <a href="{{$ctrl.headData.leftLink}}"><i class='fa fa-chevron-left big-logo'></i></a>
       </div>

@@ -21,17 +21,17 @@
   <script src="index.config.js"></script>
 
 </head>
-<body>
+<body ng-controller='uiHeader as ui'>
     
-  <header id="main-header" ng-controller='uiHeader as ui'>
+  <header id="main-header">
       <myc-ui-header head-data='ui.headData'></myc-ui-header>
   </header>
   <div id="main-container">
       <div ng-view></div>
   </div>
   <footer id="main-footer" class="main-tabs">
-     <div class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
-     <div class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
+     <div ng-click="ui.headData.type=1" class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
+     <div ng-click="ui.headData.type=2" class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
   </footer>
 
   <script src="assets/lib/angular-1.5.8/angular.js"></script>

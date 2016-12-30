@@ -23,7 +23,7 @@ function uiHeadercomponentController($scope,$log,$timeout){
 function uiHeaderController($scope,$log){
   this.headData={};
   var hd=this.headData;
-  hd.type=2;
+  hd.type=1;
   hd.logoUri='assets/img/logo-32.png';
   hd.citys = [
     '上海',
