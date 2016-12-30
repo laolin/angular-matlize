@@ -1,34 +1,34 @@
 
-    <div class="main-header_wrapper" ng-show='$ctrl.headData.type == 1'>
-      <div class='main-header_left' style='background:url("{{$ctrl.headData.logoUri}}") #f90 no-repeat;background-position: center;'/></div>
+    <div class="main-header_wrapper" ng-show='$ctrl.headerData.type == 1'>
+      <div class='main-header_left' style='background:url("{{$ctrl.headerData.logoUri}}") #f90 no-repeat;background-position: center;'/></div>
       <div class="main-header_main round-search">
         <div class='round-search_icon'>
-          <i class='fa fa-search' ng-click="$ctrl.headData.startSearch()"></i>
+          <i class='fa fa-search' ng-click="$ctrl.headerData.startSearch()"></i>
         </div>
-        <div class='round-search_cancel' ng-if='$ctrl.headData.searchWord'>
-          <i class='fa fa-times-circle' ng-click="$ctrl.headData.clearSearchWord()"></i>
+        <div class='round-search_cancel' ng-if='$ctrl.headerData.searchWord'>
+          <i class='fa fa-times-circle' ng-click="$ctrl.headerData.clearSearchWord()"></i>
         </div>
-        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.headData.startSearch()"
-           placeholder="{{$ctrl.headData.searchPlaceholder}}"
-           ng-model="$ctrl.headData.searchWord" uib-typeahead="wd in $ctrl.headData.searchList | filter:$viewValue | limitTo:8" />
+        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.headerData.startSearch()"
+           placeholder="{{$ctrl.headerData.searchPlaceholder}}"
+           ng-model="$ctrl.headerData.searchWord" uib-typeahead="wd in $ctrl.headerData.searchList | filter:$viewValue | limitTo:8" />
       </div>
       <div class='main-header_right'> 
         <div>
-          <select ng-model="$ctrl.headData.city" class="mini">
-            <option ng-repeat="c in $ctrl.headData.citys" value="{{c}}">{{c}}</option>
+          <select ng-model="$ctrl.headerData.city" class="mini">
+            <option ng-repeat="c in $ctrl.headerData.citys" value="{{c}}">{{c}}</option>
           </select>
         </div>
       </div> 
     </div>
     
-    <div class="main-header_wrapper" ng-show='$ctrl.headData.type!=1'>
+    <div class="main-header_wrapper" ng-show='$ctrl.headerData.type!=1'>
       <div class='main-header_left'>
-        <a href="{{$ctrl.headData.leftLink}}"><i class='fa fa-chevron-left big-logo'></i></a>
+        <a href="{{$ctrl.headerData.leftLink}}"><i class='fa fa-chevron-left big-logo'></i></a>
       </div>
       <div class="main-header_main">
-        <span class="main-header_title" ng-bind='$ctrl.headData.headerText'></span>
+        <span class="main-header_title" ng-bind='$ctrl.headerData.headerText'></span>
       </div>
       <div class='main-header_right'>
-        <div ng-bind='$ctrl.headData.headerMenu'></div>
+        <div ng-bind='$ctrl.headerData.headerMenu'></div>
       </div> 
     </div>

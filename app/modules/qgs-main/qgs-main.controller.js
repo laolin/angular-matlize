@@ -5,8 +5,8 @@ angular.module('qgs.main')
 .controller('qgsMainCtrl',['$scope','$log', qgsMainController ])
   
 function qgsMainController($scope,$log){
-  this.headData={};
-  var hd=this.headData;
+  this.headerData={};
+  var hd=this.headerData;
   hd.type=1;
   hd.logoUri='assets/img/logo-32.png';
   hd.citys = [
@@ -31,6 +31,18 @@ function qgsMainController($scope,$log){
   hd.leftLink='.';
   hd.headerText='查看消息';
   hd.headerMenu='账单详情';
-}
+  
+  this.footerData={};
+  var ft=this.footerData;
+  ft.tabs=[
+    {text:'首页',icon:'home',href:'#!/home',onClick:function(){hd.type=1;},active:0},
+    {text:'首页2',icon:'car',href:'#!/home',onClick:function(){hd.type=2;},active:1},
+    {text:'首页3',icon:'bicycle',href:'#!/home',onClick:'',active:0},
+    {text:'首页5',icon:'cog',href:'#!/home',onClick:'',active:''},
+    {text:'首页4',icon:'user',href:'#!/home',onClick:'',active:0}
+  ];
+
+  
+}//end of function qgsMainController
 
 })();

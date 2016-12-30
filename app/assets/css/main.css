@@ -156,11 +156,19 @@ body {
 .main-tab {
   display: table-cell;
   text-align:center;
+  font-size:20px;
+}
+.main-tab a,
+.main-tab span,
+.main-tab  i{
   color:#333;
 }
-.main-tab_active{
+.main-tab_active a,
+.main-tab_active span,
+.main-tab_active i{
   color:#f90;
 }
-.main-tab i {
-  font-size:1.0rem;
+.main-tab span {
+  display:block;
+  font-size:16px;
 }

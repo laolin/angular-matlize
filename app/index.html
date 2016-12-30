@@ -22,17 +22,12 @@
 
 </head>
 <body ng-controller='qgsMainCtrl as qgs'>
-    
-  <header id="main-header">
-      <qgs-ui-header head-data='qgs.headData'></qgs-ui-header>
-  </header>
+
+  <qgs-ui-header id="main-header" header-data='qgs.headerData'></qgs-ui-header>
   <div id="main-container">
       <div ng-view></div>
   </div>
-  <footer id="main-footer" class="main-tabs">
-     <div ng-click="qgs.headData.type=1" class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
-     <div ng-click="qgs.headData.type=2" class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
-  </footer>
+  <qgs-ui-footer id="main-footer" footer-data='qgs.footerData' class="main-tabs"></qgs-ui-footer>
 
   <script src="assets/lib/angular-1.5.8/angular.js"></script>
   <script src="assets/lib/angular-1.5.8/angular-route.js"></script>
@@ -52,6 +47,7 @@
   
   <script src="modules/qgs-ui/qgs-ui.module.js"></script>
   <script src="modules/qgs-ui/qgs-ui.header.component.js"></script>
+  <script src="modules/qgs-ui/qgs-ui.footer.component.js"></script>
 
   <script src="modules/app.module.js"></script>
   <script src="assets/js/common.js"></script>
