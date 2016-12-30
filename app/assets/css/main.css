@@ -1,7 +1,6 @@
 body,html{height:100%;-webkit-tap-highlight-color:transparent}
 html {
   font-size: 25.6px !important;
-  
 }
 body {
   font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
@@ -20,100 +19,116 @@ body {
   top: 0;
   height:56px;
   background-color:#f90;
-  display: table;
+}
+#main-header a,
+#main-header span,
+#main-header div{
+  color:#fff;
 }
 
-.main-header_content {
+.main-header_wrapper {
   height:56px;
+  line-height:56px;
   width: 100%;
-  display: table-cell;
   vertical-align: middle;
   color:#fff;
   padding:0 90px 0 40px;
   text-align:center;
 }
-.main-header_content i{ 
-  font-size:0.7rem;
+.main-header_wrapper i{ 
   cursor:pointer;
+}
 
+.main-header_title{ 
+  font-size:24px;
 }
 
 .main-header_left {
   position:relative;
   width:40px; 
+  height:100%;
   float:left; 
   margin-left:-40px; 
   text-align:center;
 }
 .main-header_right {
   position:relative;
-  width:80px; float:right; margin-right:-80px;
+  width:80px;
+  height:56px;
+  line-height:56px;
+  float:right;
+  margin-right:-80px;
   text-align:center;
-  color:#888 !important;
+}
+
+
+.main-header_right input.select-dropdown  {
+  text-align:center;
+  font-size:14px ;
+  margin:0 0px 0 0 ;
+  height:56px ;
+  line-height:56px;
+  border:0;
 }
 
 .main-header_main{
     float:left;
     width:100% !important;
     color:#fff;
+    font-size:16px;
+    margin:auto !important;
 }
 
 .round-search {
     border-radius: 15px;
     border:1px solid #f90;
     background-color:#fff;
-    margin:0 auto !important; 
-    padding:0 30px !important;
+    height:32px;
+    line-height:32px;
+
+    margin:11px auto !important; 
+    padding:0 36px !important;
     color:#f90;
 
-  outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px rgba(102, 175, 233, .6);
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px rgba(102, 175, 233, .6);
 
 }
 .round-search_icon{
   position:relative;
-  width:30px; 
+  width:35px; 
   float:left; 
-  margin-top:4px; 
-  margin-left:-30px; 
+  color:#f90 !important; 
+  margin-left:-35px; 
   text-align:center;
 }
 .round-search_cancel{
   position:relative;
-  width:25px; 
+  width:35px; 
   float:right; 
-  margin-top:4px;
-  margin-right:-25px; 
+  color:#f90 !important;
+  margin-right:-35px; 
   text-align:center;
 }
 .round-search input{
-    margin:0 auto !important; 
+    margin:0 0 !important; 
     padding:0 0px !important;
     border:0 !important;
     height:32px !important;
     font-size:0.7rem !important;
     width:100% !important;
-    height:32px;
+    height:56px;
     float:left;
+    color:#f90 !important;
 }
 .round-search input:focus {
     box-shadow: none !important;
 }
 
-input.mini,
-.mini input{
-    margin:0 20px 0 0 !important;
-    padding:0 0 0 0 !important;
-    border:0 !important;
-    font-size:0.7rem !important;
-    line-height:1rem !important;
-    text-align:center;
-    height:32px !important;
+.dropdown-content li span{
+  color:#d82 !important;
 }
-.mini span{
-  color:#888 !important;
-}
+
 #main-container{
   height:auto !important;
   top:56px;

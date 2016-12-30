@@ -9,8 +9,10 @@ angular.module('ui.header')
     bindings: {
       headData: '='
     }
-});
+})
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 function uiHeadercomponentController($scope,$log,$timeout){
   $log.log('headData');
   $log.log($scope.$ctrl.headData);
@@ -21,6 +23,7 @@ function uiHeadercomponentController($scope,$log,$timeout){
 function uiHeaderController($scope,$log){
   this.headData={};
   var hd=this.headData;
+  hd.type=2;
   hd.logoUri='assets/img/logo-32.png';
   hd.citys = [
     '上海',
@@ -40,10 +43,9 @@ function uiHeaderController($scope,$log){
     $log.log('Under development. Search word is '+hd.searchWord);
   }
   
-  
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
+  hd.leftLink='.';
+  hd.headerText='查看消息';
+  hd.headerMenu='账单详情';
 }
 
 })();
