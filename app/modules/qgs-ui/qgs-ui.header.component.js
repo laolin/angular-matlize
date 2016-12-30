@@ -1,7 +1,7 @@
 'use strict';
 (function(){
 
-angular.module('qgs.ui')
+angular.module('qgs-ui')
 .component('qgsUiHeader',{
     templateUrl: 'modules/qgs-ui/qgs-ui.header.template.html',
     controller: ['$scope','$log','$timeout', uiHeadercomponentController ],

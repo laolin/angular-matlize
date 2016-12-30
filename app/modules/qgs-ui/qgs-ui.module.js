@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('qgs.ui', [
+angular.module('qgs-ui', [
   ])
 ;

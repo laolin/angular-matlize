@@ -5,8 +5,9 @@
 angular.module('myApp', [
 
     'myApp.index',
-    'qgs.main',
-    'qgs.ui',
+    'qgs-main',//qgsMainCtrl
+    'qgs-ui',//component <qgs-ui-xxx>
+    'mz-js',//满足满意-技师
     
     'ngRoute'
   ]).
