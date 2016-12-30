@@ -1,26 +1,10 @@
 'use strict';
 (function(){
 
-angular.module('ui.header')
-.controller('uiHeader',['$scope','$log', uiHeaderController ])
-.component('mycUiHeader',{
-    templateUrl: 'modules/ui-header/ui-header.template.html',
-    controller: ['$scope','$log','$timeout', uiHeadercomponentController ],
-    bindings: {
-      headData: '='
-    }
-})
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-function uiHeadercomponentController($scope,$log,$timeout){
-  $log.log('headData');
-  $log.log($scope.$ctrl.headData);
-  $timeout(function(){$('select').material_select()},78);
-
-}
+angular.module('qgs.main')
+.controller('qgsMainCtrl',['$scope','$log', qgsMainController ])
   
-function uiHeaderController($scope,$log){
+function qgsMainController($scope,$log){
   this.headData={};
   var hd=this.headData;
   hd.type=1;
@@ -33,6 +17,7 @@ function uiHeaderController($scope,$log){
   ];
   hd.city='上海';
   hd.searchWord='';
+  hd.searchPlaceholder='请输入技师名称、商户名称';
   hd.searchList = []; //TODO: values will get from API
   hd.clearSearchWord=function(){
     hd.searchWord='';

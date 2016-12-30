@@ -9,6 +9,7 @@
           <i class='fa fa-times-circle' ng-click="$ctrl.headData.clearSearchWord()"></i>
         </div>
         <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.headData.startSearch()"
+           placeholder="{{$ctrl.headData.searchPlaceholder}}"
            ng-model="$ctrl.headData.searchWord" uib-typeahead="wd in $ctrl.headData.searchList | filter:$viewValue | limitTo:8" />
       </div>
       <div class='main-header_right'> 

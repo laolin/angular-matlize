@@ -5,7 +5,8 @@
 angular.module('myApp', [
 
     'myApp.index',
-    'ui.header',
+    'qgs.main',
+    'qgs.ui',
     
     'ngRoute'
   ]).

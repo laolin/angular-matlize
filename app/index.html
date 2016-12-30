@@ -21,17 +21,17 @@
   <script src="index.config.js"></script>
 
 </head>
-<body ng-controller='uiHeader as ui'>
+<body ng-controller='qgsMainCtrl as qgs'>
     
   <header id="main-header">
-      <myc-ui-header head-data='ui.headData'></myc-ui-header>
+      <qgs-ui-header head-data='qgs.headData'></qgs-ui-header>
   </header>
   <div id="main-container">
       <div ng-view></div>
   </div>
   <footer id="main-footer" class="main-tabs">
-     <div ng-click="ui.headData.type=1" class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
-     <div ng-click="ui.headData.type=2" class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
+     <div ng-click="qgs.headData.type=1" class="main-tab main-tab_active"><i class="fa fa-user" aria-hidden="true"></i><div>请稍候</div></div>
+     <div ng-click="qgs.headData.type=2" class="main-tab"><i class="fa fa-users" aria-hidden="true"></i><div>Please Wait</div></div>
   </footer>
 
   <script src="assets/lib/angular-1.5.8/angular.js"></script>
@@ -46,8 +46,12 @@
 
   
   <script src="modules/index/index.module.js"></script>
-  <script src="modules/ui-header/ui-header.module.js"></script>
-  <script src="modules/ui-header/ui-header.component.js"></script>
+  
+  <script src="modules/qgs-main/qgs-main.module.js"></script>
+  <script src="modules/qgs-main/qgs-main.controller.js"></script>
+  
+  <script src="modules/qgs-ui/qgs-ui.module.js"></script>
+  <script src="modules/qgs-ui/qgs-ui.header.component.js"></script>
 
   <script src="modules/app.module.js"></script>
   <script src="assets/js/common.js"></script>
