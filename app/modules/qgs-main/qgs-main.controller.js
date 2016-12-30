@@ -35,8 +35,8 @@ function qgsMainController($scope,$log){
   this.footerData={};
   var ft=this.footerData;
   ft.tabs=[
-    {text:'首页',icon:'home',href:'#!/home',onClick:function(){hd.type=1;},active:0},
-    {text:'首页2',icon:'car',href:'#!/home',onClick:function(){hd.type=2;},active:1},
+    {text:'首页',icon:'home',href:'#!/index',onClick:function(){hd.type=1;},active:1},
+    {text:'首页2',icon:'car',href:'#!/home',onClick:function(){hd.type=2;},active:0},
     {text:'首页3',icon:'bicycle',href:'#!/home',onClick:'',active:0},
     {text:'首页5',icon:'cog',href:'#!/home',onClick:'',active:''},
     {text:'首页4',icon:'user',href:'#!/home',onClick:'',active:0}
