@@ -172,3 +172,12 @@ body {
   display:block;
   font-size:16px;
 }
+/* --- progress color ------- */
+.progress  {
+    background-color: #fd2;
+}
+
+.progress .determinate,
+.progress .indeterminate {
+    background-color: #d82;
+}

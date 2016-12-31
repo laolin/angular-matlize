@@ -9,8 +9,9 @@ angular.module('qgs-ui')
     },
     controller: ['$scope','$log','$timeout','qgsMainAppData',
       function ($scope,$log,$timeout,qgsMainAppData){
-        $scope.$ctrl.clickTab = qgsMainAppData.fn.activeTabByIndex; 
-    }]
+
+      }
+    ]
 })
 
 
