@@ -14,5 +14,5 @@ angular.module('myApp', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/index'});
+  $routeProvider.otherwise({redirectTo: '/mz-js.home'});
 }]);

@@ -3,8 +3,8 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppData',[ '$route',  '$rootScope', '$location','$log',
-  function($route, $rootScope,$location,$log) {
-
+    function($route, $rootScope,$location,$log) {
+  
   this.headerData={};
   var hd=this.headerData;
   hd.type=1;
@@ -35,17 +35,22 @@ angular.module('qgs-main')
   this.footerData={};
   var ft=this.footerData;
   ft.tabs=[
-    {text:'首页',icon:'home',href:'#!/index',onClick:function(){hd.type=1;},active:1},
-    {text:'首页2',icon:'car',href:'#!/home',onClick:function(){hd.type=2;},active:0},
-    {text:'首页3',icon:'bicycle',href:'#!/home',onClick:'',active:0},
-    {text:'首页5',icon:'cog',href:'#!/home',onClick:'',active:''},
-    {text:'我的',icon:'user',href:'#!/mz-js.my',onClick:function(){hd.type=1;},active:0}
+    {text:'首页',icon:'home',href:'/mz-js.home',hdType:1,onClick:0,active:0},
+    {text:'test',icon:'cog',href:'/index',hdType:2,onClick:0,active:1},
+    {text:'我的',icon:'user',href:'/mz-js.my',hdType:1,onClick:0,active:0}
   ];
+  
+  
+  //factory functions
+  
+  
+  
   function activeTabByPath(p) {
-    for(var nt=ft.tabs.length;i--; ){
-      if(ft.tabs[nt].href==p)break;
+    for(var i=ft.tabs.length;i--; ){
+      if(ft.tabs[i].href==p)break;
     }
-    return activeTabByIndex(nt);
+    if(i<0)return true;
+    return activeTabByIndex(i);
   }
 
   function activeTabByIndex(nt) {
@@ -53,14 +58,22 @@ angular.module('qgs-main')
       ft.tabs[i].active=false;
     }
     ft.tabs[nt].active=true;
+    hd.type=ft.tabs[nt].hdType;
     if(typeof(ft.tabs[nt].onClick)=='function')ft.tabs[nt].onClick();
     return true;
+  }
+  
+  function startPathMonitor() {
+    $rootScope.$on('$routeChangeSuccess', function() {
+      activeTabByPath($location.path());
+    });
   }
 
   return {
     fn:{
       activeTabByPath:activeTabByPath,
       activeTabByIndex:activeTabByIndex,
+      startPathMonitor:startPathMonitor,
       getHeaderData:function(){return hd},
       getFooterData:function(){return ft}
     }
