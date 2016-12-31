@@ -23,11 +23,11 @@
 </head>
 <body ng-controller='qgsMainCtrl as qgs'>
 
-  <qgs-ui-header id="main-header" header-data='qgs.headerData'></qgs-ui-header>
+  <qgs-ui-header id="main-header" header-data='qgs.getHeaderData()'></qgs-ui-header>
   <div id="main-container">
       <div ng-view><h5 class='center-align'>Loading...</h5></div>
   </div>
-  <qgs-ui-footer id="main-footer" footer-data='qgs.footerData' class="main-tabs"></qgs-ui-footer>
+  <qgs-ui-footer id="main-footer" footer-data='qgs.getFooterData()' class="main-tabs"></qgs-ui-footer>
 
   <script src="assets/lib/angular-1.5.8/angular.js"></script>
   <script src="assets/lib/angular-1.5.8/angular-route.js"></script>
@@ -44,6 +44,7 @@
   
   <script src="modules/qgs-main/qgs-main.module.js"></script>
   <script src="modules/qgs-main/qgs-main.controller.js"></script>
+  <script src="modules/qgs-main/qgs-main.app-data.js"></script>
   
   <script src="modules/qgs-ui/qgs-ui.module.js"></script>
   <script src="modules/qgs-ui/qgs-ui.header.component.js"></script>
