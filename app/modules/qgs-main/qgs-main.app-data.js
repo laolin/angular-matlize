@@ -41,11 +41,29 @@ angular.module('qgs-main')
     {text:'首页5',icon:'cog',href:'#!/home',onClick:'',active:''},
     {text:'我的',icon:'user',href:'#!/mz-js.my',onClick:function(){hd.type=1;},active:0}
   ];
+  function activeTabByPath(p) {
+    for(var nt=ft.tabs.length;i--; ){
+      if(ft.tabs[nt].href==p)break;
+    }
+    return activeTabByIndex(nt);
+  }
+
+  function activeTabByIndex(nt) {
+    for(var i=ft.tabs.length;i--; ){
+      ft.tabs[i].active=false;
+    }
+    ft.tabs[nt].active=true;
+    if(typeof(ft.tabs[nt].onClick)=='function')ft.tabs[nt].onClick();
+    return true;
+  }
 
   return {
-    getHeaderData:function(){return hd},
-    getFooterData:function(){return ft},
-    test:function(){$log.log('servic is ready.')}
+    fn:{
+      activeTabByPath:activeTabByPath,
+      activeTabByIndex:activeTabByIndex,
+      getHeaderData:function(){return hd},
+      getFooterData:function(){return ft}
+    }
   }
   
 }]);
