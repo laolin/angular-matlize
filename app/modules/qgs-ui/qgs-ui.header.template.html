@@ -14,8 +14,8 @@
       </div>
       <div class='main-header_right'> 
         <div>
-          <select ng-model="$ctrl.headerData.city" class="mini">
-            <option ng-repeat="c in $ctrl.headerData.citys" value="{{c}}">{{c}}</option>
+          <select ng-model="$ctrl.headerData.citySelected" class="mini">
+            <option ng-repeat="c in $ctrl.headerData.cityData.data" value="{{c}}">{{c}}</option>
           </select>
         </div>
       </div> 

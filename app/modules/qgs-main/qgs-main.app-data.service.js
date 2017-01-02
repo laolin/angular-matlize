@@ -5,33 +5,34 @@ angular.module('qgs-main')
 .factory('qgsMainAppData',[ '$route', '$rootScope', '$location','$log','$timeout','qgsMainApi',
     function($route, $rootScope,$location,$log,$timeout,qgsMainApi) {
   
-  this.headerData={};
-  this.footerData={};
-  this.searchData={s:0,searching:0};
+  var headerData=this.headerData={};
+  var footerData=this.footerData={};
+  var searchData=this.searchData={result:0,searching:0};
+  var userData=this.userData={test1:'[it is ready]'};
 
+  var appData=this.appData={
+    headerData:this.headerData,
+    footerData:this.footerData,
+    searchData:this.searchData,
+    userData:this.userData,
+  }
   
-  var hd=this.headerData;
-  var sd=this.searchData;
-  
-  hd.type=1;
-  hd.logoUri='assets/img/logo-32.png';
-  hd.citysData = qgsMainApi.cityList.get(function(value,responseHeaders,status,statusText ){
-      //$log.log(value,responseHeaders,status,statusText );
-      $log.log('hd.citysData',hd.citysData);
-      hd.citys=hd.citysData.data;
-      hd.city=hd.citys[0];
+ 
+  headerData.type=1;
+  headerData.logoUri='assets/img/logo-32.png';
+  headerData.citySelected='loading';
+  headerData.cityData = qgsMainApi.cityList.get(function(value,responseHeaders,status,statusText ){
+      headerData.citySelected=headerData.cityData.data[0];
       $timeout(function(){$('select').material_select()},78);
     });
-  hd.citys = [];
-  hd.city='';
   
   
-  hd.leftLink='.';
-  hd.headerText='查看消息';
-  hd.headerMenu='账单详情';
+  headerData.leftLink='.';
+  headerData.headerText='查看消息';
+  headerData.headerMenu='账单详情';
   
-  var ft=this.footerData;
-  ft.tabs=[
+  // footerData
+  footerData.tabs=[
     {text:'首页',icon:'home',href:'/mz-js.home',hdType:1,onClick:0,active:0},
     {text:'搜索',icon:'search',href:'/mz-user.search',hdType:1,onClick:0,active:1},
     {text:'我的',icon:'user',href:'/mz-js.my',hdType:2,onClick:0,active:0}
@@ -44,8 +45,8 @@ angular.module('qgs-main')
   
   function activeTabByPath(p) {
     $log.log('activeTabByPath',p);
-    for(var i=ft.tabs.length;i--; ){
-      if(ft.tabs[i].href==p)break;
+    for(var i=footerData.tabs.length;i--; ){
+      if(footerData.tabs[i].href==p)break;
     }
     if(i<0)return true;
     return activeTabByIndex(i);
@@ -53,12 +54,12 @@ angular.module('qgs-main')
 
   function activeTabByIndex(nt) {
     $log.log('activeTabByIndex',nt);
-    for(var i=ft.tabs.length;i--; ){
-      ft.tabs[i].active=false;
+    for(var i=footerData.tabs.length;i--; ){
+      footerData.tabs[i].active=false;
     }
-    ft.tabs[nt].active=true;
-    hd.type=ft.tabs[nt].hdType;
-    if(typeof(ft.tabs[nt].onClick)=='function')ft.tabs[nt].onClick();
+    footerData.tabs[nt].active=true;
+    headerData.type=footerData.tabs[nt].hdType;
+    if(typeof(footerData.tabs[nt].onClick)=='function')footerData.tabs[nt].onClick();
     return true;
   }
   
@@ -70,11 +71,11 @@ angular.module('qgs-main')
   
   function startSearch(w) {
     $log.log('Search word is '+w);
-    sd.s=qgsMainApi.search.get({s:w});
-    sd.searching=true;
+    searchData.searching=true;
+    searchData.result=qgsMainApi.search.get({s:w},function(){searchData.searching=false;});
   }
   function getSearchData() {
-    return sd;
+    return searchData;
   }
   
   return {
@@ -84,8 +85,9 @@ angular.module('qgs-main')
     activeTabByPath:activeTabByPath,
     activeTabByIndex:activeTabByIndex,
     startPathMonitor:startPathMonitor,
-    getHeaderData:function(){return hd},
-    getFooterData:function(){return ft}
+    getHeaderData:function(){return headerData},
+    getFooterData:function(){return footerData},
+    getAppData:function(){return appData}
   }
   
 }]);

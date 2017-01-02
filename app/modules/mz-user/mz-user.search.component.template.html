@@ -1,0 +1,22 @@
+﻿
+<div>
+  <div class="progress" ng-if='$ctrl.searchData.searching'>
+      <div class="indeterminate"></div>
+  </div>
+  
+  
+  <ul class="collection" ng-if='$ctrl.searchData.result.data'>
+    <li class="valign-wrapper">
+    <h6 class="valign">显示前{{$ctrl.searchData.result.data.length}}项</h6>
+	</li>
+    <li class="collection-item avatar" ng-repeat='d in $ctrl.searchData.result.data'>
+      <img src="assets/img/logo-32.png" alt="" class="circle">
+      <span class="title">{{d.name}}</span>
+      <p>{{d.addr}}<br>
+         {{d.tel}}
+      </p>
+      <a class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+  </ul>
+</div>
+
