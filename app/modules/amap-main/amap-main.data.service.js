@@ -4,6 +4,7 @@ angular.module('amap-main')
 .factory('amapMainData', ['$log','$timeout',
       function ($log,$timeout){
         var mapData={options:{zoom: 10}};
+        mapData.showMapTo=showMapTo;
         
         
         

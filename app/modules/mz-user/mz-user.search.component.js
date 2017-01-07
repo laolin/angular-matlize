@@ -7,8 +7,8 @@ angular.module('mz-user')
     searchData: '='
   },
   controller:['$scope','$http','$log','$interval','qgsMainAppData',
-	function ($scope,$http,$log,$interval,qgsMainAppData) {
-      $log.log('mzUserSearchResult $scope.$ctrl.searchData',$scope.$ctrl.searchData);
+	  function ($scope,$http,$log,$interval,qgsMainAppData) {
+
     }
   ]
 });
