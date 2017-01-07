@@ -19,6 +19,32 @@ angular.module('amap-main')
         
         amapMainData.showMapTo('amap-main-map-0');
         
+        $scope.$watch(
+          function() { return $scope.$ctrl.searchData.resultTime; },
+          function(newValue, oldValue) {
+            var data=$scope.$ctrl.searchData.result.data;
+            _gen_mark(data);
+          }
+        );
+        $log.log('searchData',$scope.$ctrl.searchData.result.data);
+        var _marks=[];
+        var _gen_mark=function(data) {
+          if(!data)return;
+          for(var i=_marks.length; i--;  ) {
+            _marks[i].setMap(null);
+            _marks[i]=null;
+          }
+          _marks=[];
+          for(var i=data.length; i--;  ) {
+            _marks[i]= new AMap.Marker({
+              position: data[i].lnglat.split(','),
+              title: data[i].name
+            });
+            _marks[i].setMap($scope.$ctrl.mapData.map);
+          }
+
+          
+        }
       }
     ]
 })

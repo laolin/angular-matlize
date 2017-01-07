@@ -44,6 +44,7 @@ angular.module('qgs-main')
   //searchData
   searchData.result=0;
   searchData.searching=0;
+  searchData.resultTime=0;
   searchData.options={orderBy:'auto'};
   searchData.searchWord='';
   searchData.searchPlaceholder='商户名称/地址/电话';
@@ -58,7 +59,7 @@ angular.module('qgs-main')
     searchData.searching=true;
     searchData.result=qgsMainApi.search.get(
       {s:searchData.searchWord},
-      function(){searchData.searching=false;}
+      function(){searchData.searching=false;searchData.resultTime= +new Date()}
     );
 
     $location.url('/mz-user.search');
