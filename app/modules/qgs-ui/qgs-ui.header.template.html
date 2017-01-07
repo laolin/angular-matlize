@@ -3,14 +3,14 @@
       <div class='main-header_left' style='background:url("{{$ctrl.headerData.logoUri}}") #f90 no-repeat;background-position: center;'/></div>
       <div class="main-header_main round-search">
         <div class='round-search_icon'>
-          <i class='fa fa-search' ng-click="$ctrl.startSearch()"></i>
+          <i class='fa fa-search' ng-click="$ctrl.searchData.startSearch()"></i>
         </div>
-        <div class='round-search_cancel' ng-if='$ctrl.searchWord'>
-          <i class='fa fa-times-circle' ng-click="$ctrl.clearSearchWord()"></i>
+        <div class='round-search_cancel' ng-if='$ctrl.searchData.searchWord'>
+          <i class='fa fa-times-circle' ng-click="$ctrl.searchData.clearSearchWord()"></i>
         </div>
-        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.startSearch()"
-           placeholder="{{$ctrl.searchPlaceholder}}"
-           ng-model="$ctrl.searchWord" uib-typeahead="wd in $ctrl.searchList | filter:$viewValue | limitTo:8" />
+        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.searchData.startSearch()"
+           placeholder="{{$ctrl.searchData.searchPlaceholder}}"
+           ng-model="$ctrl.searchData.searchWord" uib-typeahead="wd in $ctrl.searchData.searchList | filter:$viewValue | limitTo:8" />
       </div>
       <div class='main-header_right'> 
         <div>

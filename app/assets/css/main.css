@@ -179,3 +179,12 @@ body {
 .progress .indeterminate {
     background-color: #d80;
 }
+/* --- tab align ------- */
+.table-display {
+  display: table;
+  width:100%;
+}
+.table-cell{
+  display: table-cell;
+  text-align:center;
+}
