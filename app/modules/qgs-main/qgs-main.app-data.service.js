@@ -2,19 +2,22 @@
 (function(){
 
 angular.module('qgs-main')
-.factory('qgsMainAppData',[ '$route', '$rootScope', '$location','$log','$timeout','qgsMainApi',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi) {
+.factory('qgsMainAppData',
+    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData',
+    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData) {
   
-  var headerData=this.headerData={};
-  var footerData=this.footerData={};
-  var searchData=this.searchData={result:0,searching:0};
-  var userData=this.userData={test1:'[it is ready]'};
+  var headerData={};
+  var footerData={};
+  var searchData={};
+  var userData={test1:'[it is ready]'};
+  var mapData=amapMainData.getMapData();
 
   var appData=this.appData={
-    headerData:this.headerData,
-    footerData:this.footerData,
-    searchData:this.searchData,
-    userData:this.userData,
+    headerData:headerData,
+    footerData:footerData,
+    searchData:searchData,
+    userData:userData,
+    mapData:mapData
   }
   
  
@@ -37,6 +40,30 @@ angular.module('qgs-main')
     {text:'搜索',icon:'search',href:'/mz-user.search',hdType:1,onClick:0,active:1},
     {text:'我的',icon:'user',href:'/mz-js.my',hdType:2,onClick:0,active:0}
   ];
+  
+  //searchData
+  searchData.result=0;
+  searchData.searching=0;
+  searchData.options={orderBy:'auto'};
+  searchData.searchWord='';
+  searchData.searchPlaceholder='商户名称/地址/电话';
+  searchData.searchList = []; //TODO: values will get from API
+
+  searchData.clearSearchWord=function(){
+    searchData.searchWord='';
+  }
+
+  searchData.startSearch=function(){
+    $log.log('Search word is '+searchData.searchWord);
+    searchData.searching=true;
+    searchData.result=qgsMainApi.search.get(
+      {s:searchData.searchWord},
+      function(){searchData.searching=false;}
+    );
+
+    $location.url('/mz-user.search');
+  }
+  
   
   
   //factory functions
@@ -69,17 +96,11 @@ angular.module('qgs-main')
     });
   }
   
-  function startSearch(w) {
-    $log.log('Search word is '+w);
-    searchData.searching=true;
-    searchData.result=qgsMainApi.search.get({s:w},function(){searchData.searching=false;});
-  }
   function getSearchData() {
     return searchData;
   }
   
   return {
-    startSearch:startSearch,
     getSearchData:getSearchData,
     
     activeTabByPath:activeTabByPath,

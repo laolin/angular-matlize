@@ -9,6 +9,7 @@ angular.module('myApp', [
     'qgs-ui',//component <qgs-ui-xxx>
     'mz-js',//满足满意-技师
     'mz-user',//满足满意-用户
+    'amap-main',//高德地图
     
     'ngRoute'
   ]).

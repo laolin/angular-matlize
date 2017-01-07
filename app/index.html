@@ -23,11 +23,13 @@
 </head>
 <body ng-controller='qgsMainCtrl as qgs'>
 
-  <qgs-ui-header id="main-header" header-data='qgs.dataFn.getHeaderData()'></qgs-ui-header>
+  <qgs-ui-header id="main-header" header-data='appData.headerData'
+    search-data="appData.searchData"
+    ></qgs-ui-header>
   <div id="main-container">
       <div ng-view><h5 class='center-align'>Loading...</h5></div>
   </div>
-  <qgs-ui-footer id="main-footer" footer-data='qgs.dataFn.getFooterData()' class="main-tabs"></qgs-ui-footer>
+  <qgs-ui-footer id="main-footer" footer-data='appData.footerData' class="main-tabs"></qgs-ui-footer>
 
   <script src="assets/lib/angular-1.5.8/angular.min.js"></script>
   <script src="assets/lib/angular-1.5.8/angular-route.min.js"></script>
@@ -47,6 +49,10 @@
   <script src="modules/qgs-main/qgs-main.app-data.service.js"></script>
   <script src="modules/qgs-main/qgs-main.api.service.js"></script>
   
+  <script src="modules/amap-main/amap-main.module.js"></script>
+  <script src="modules/amap-main/amap-main.component.js"></script>
+  <script src="modules/amap-main/amap-main.data.service.js"></script>
+
   <script src="modules/qgs-ui/qgs-ui.module.js"></script>
   <script src="modules/qgs-ui/qgs-ui.header.component.js"></script>
   <script src="modules/qgs-ui/qgs-ui.footer.component.js"></script>
@@ -59,15 +65,12 @@
   <script src="modules/mz-user/mz-user.module.js"></script>
   <script src="modules/mz-user/mz-user.search.route.js"></script>
   <script src="modules/mz-user/mz-user.search.component.js"></script>
+  <script src="modules/mz-user/mz-user.search-options.component.js"></script>
   
   <script src="modules/app.module.js"></script>
   <script src="assets/js/common.js"></script>
   
   
   <script src="qgs-main.app-config.js"></script>
-
-    
-  <script>
-  </script>
 </body>
 </html>
