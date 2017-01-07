@@ -79,6 +79,7 @@ angular.module('amap-main')
             mapData.div.style.display="none";
             document.body.appendChild(mapData.div);
             mapData.map = new AMap.Map(mapData.div.id, mapData.options);
+            mapData.map.addControl(new AMap.ToolBar());
             //初始化地图后，再从 body 中移走
             mapData.div.parentNode.removeChild(mapData.div);
             mapData.div.style.display='';
