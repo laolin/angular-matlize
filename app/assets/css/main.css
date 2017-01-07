@@ -188,3 +188,31 @@ body {
   display: table-cell;
   text-align:center;
 }
+
+/* --- radio color ------- */
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: #f90;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    border: 2px solid #f90;
+}
+[type="checkbox"]:checked+label:before {
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid #f90;
+    border-bottom: 2px solid #f90;
+}
+[type="checkbox"]:checked+label, [type="radio"]:checked+label{
+  color:#f90;
+}
+/* --- button color ---- */
+.btn:hover, .btn-large:hover {
+    background-color: #fd2;
+}
+.btn, .btn-large {
+    background-color: #f90;
+}
+#main-container div .btn, 
+#main-container div .btn-large {
+    color: #fff;
+}
