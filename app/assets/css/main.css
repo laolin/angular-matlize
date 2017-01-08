@@ -170,6 +170,13 @@ body {
 .main-tab_active i{
   color:#f90;
 }
+
+.search-options-wrapper {
+  min-height:50px;
+  xline-height:50px;
+  background-color: #fff;
+}
+
 /* --- progress color ------- */
 .progress  {
     background-color: #fd2;

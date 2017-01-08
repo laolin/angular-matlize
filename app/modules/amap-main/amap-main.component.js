@@ -26,7 +26,7 @@ angular.module('amap-main')
             _gen_mark(data);
           }
         );
-        $log.log('searchData',$scope.$ctrl.searchData.result.data);
+
         var _marks=[];
         var _gen_mark=function(data) {
           if(!data)return;
@@ -38,7 +38,8 @@ angular.module('amap-main')
           for(var i=data.length; i--;  ) {
             _marks[i]= new AMap.Marker({
               position: data[i].lnglat.split(','),
-              title: data[i].name
+              title: data[i].name,
+              animation: "AMAP_ANIMATION_DROP"
             });
             _marks[i].setMap($scope.$ctrl.mapData.map);
           }

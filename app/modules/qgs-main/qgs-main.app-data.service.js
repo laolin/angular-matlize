@@ -19,8 +19,9 @@ angular.module('qgs-main')
     userData:userData,
     mapData:mapData
   }
-  
+  window.appData=appData;//export to global
  
+  // headerData
   headerData.type=1;
   headerData.logoUri='assets/img/logo-32.png';
   headerData.citySelected='loading';
@@ -36,8 +37,8 @@ angular.module('qgs-main')
   
   // footerData
   footerData.tabs=[
-    {text:'首页',icon:'home',href:'/mz-js.home',hdType:1,onClick:0,active:0},
     {text:'搜索',icon:'search',href:'/mz-user.search',hdType:1,onClick:0,active:1},
+    {text:'测试',icon:'cog',href:'/mz-js.home',hdType:2,onClick:0,active:0},
     {text:'我的',icon:'user',href:'/mz-js.my',hdType:2,onClick:0,active:0}
   ];
   
@@ -45,7 +46,7 @@ angular.module('qgs-main')
   searchData.result=0;
   searchData.searching=0;
   searchData.resultTime=0;
-  searchData.options={orderBy:'auto'};
+  searchData.options={orderBy:'auto',searchInsideMap:true};
   searchData.searchWord='';
   searchData.searchPlaceholder='商户名称/地址/电话';
   searchData.searchList = []; //TODO: values will get from API
@@ -55,16 +56,35 @@ angular.module('qgs-main')
   }
 
   searchData.startSearch=function(){
-    $log.log('Search word is '+searchData.searchWord);
+    var bd;
+    var serchPara={s:searchData.searchWord};
+
+    if(mapData.map) {
+      bd=mapData.map.getBounds( );
+      mapData.northeast=bd.northeast;
+      mapData.southwest=bd.southwest;
+      if(searchData.options.searchInsideMap) {
+        serchPara.latlng= 
+          Math.floor(1e7 * mapData.southwest.lat ) + ',' +
+          Math.floor(1e7 * mapData.southwest.lng ) + ',' +
+          Math.floor(1e7 * mapData.northeast.lat ) + ',' +
+          Math.floor(1e7 * mapData.northeast.lng );
+      }
+      
+    }
+    $log.log('serchPara ', serchPara);
+    
     searchData.searching=true;
     searchData.result=qgsMainApi.search.get(
-      {s:searchData.searchWord},
+      serchPara,
       function(){searchData.searching=false;searchData.resultTime= +new Date()}
     );
 
     $location.url('/mz-user.search');
   }
   
+  // madData
+  amapMainData.initMap();
   
   
   //factory functions

@@ -3,7 +3,10 @@
 angular.module('amap-main')
 .factory('amapMainData', ['$log','$timeout',
       function ($log,$timeout){
-        var mapData={options:{zoom: 10}};
+        var mapData={
+          options:{zoom: 10},
+          inInit:0 //表示是否正在初始化
+        };
         mapData.showMapTo=showMapTo;
         
         
@@ -50,7 +53,10 @@ angular.module('amap-main')
         
         // initMap
         function initMap(options) {
-          $log.log("Loading AMap ...");
+          if(mapData.inInit)return;
+          $log.log("Loading AMap ...",mapData.inInit);
+          mapData.inInit=true;
+          
           if(typeof(options)=='object')setMapOptions(options);
           if(typeof (AMap) == 'undefined')loadMapScript()
           $timeout(wait_init_map, 10);
@@ -66,10 +72,14 @@ angular.module('amap-main')
             }
             else
               _init_map();
+              mapData.inInit=false;
           }
-
+          //initMap 直接执行的语句结束
+          
+          //以下为initMap的内部函数
           function _init_map() {
             $log.log("Init AMap ...");
+            if(mapData.map)return;
             mapData.div = document.createElement("div");
             mapData.div.id='map-contain-'+(+new Date());
             mapData.div.style.height="100%";
@@ -80,9 +90,20 @@ angular.module('amap-main')
             document.body.appendChild(mapData.div);
             mapData.map = new AMap.Map(mapData.div.id, mapData.options);
             mapData.map.addControl(new AMap.ToolBar());
+            _saveMapBounds();
+            mapData.map.on('moveend',_saveMapBounds);
+            mapData.map.on('zoomend',_saveMapBounds);
+            mapData.map.on('resize',_saveMapBounds);
+            
             //初始化地图后，再从 body 中移走
             mapData.div.parentNode.removeChild(mapData.div);
             mapData.div.style.display='';
+          }
+          function _saveMapBounds(msg) {
+            $log.log('_saveMapBounds',msg);
+            var bd=mapData.map.getBounds( );
+            mapData.northeast=bd.northeast;
+            mapData.southwest=bd.southwest;
           }
           function loadMapScript() {
             var script = document.createElement("script");

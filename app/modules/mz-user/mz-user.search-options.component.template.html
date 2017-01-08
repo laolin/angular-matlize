@@ -1,40 +1,14 @@
 ﻿
-<div>
+<div class="search-options-wrapper valign-wrapper">
 
-  <ul class="collection" >
-    <li class="collection-item">
-      <div class=" table-display">
-        <span class="table-cell">
-          <input class="with-gap" name="group1" ng-model="$ctrl.searchData.options.orderBy" type="radio" id="options-1" value="auto" />
-          <label for="options-1">
-            智能
-          </label>
-        </span>
-        <span class="table-cell">
-          <input class="with-gap" name="group1" ng-model="$ctrl.searchData.options.orderBy" type="radio" id="options-3" value="starcount"  />
-          <label for="options-3">
-            人气
-          </label>
-        </span>
-        <span class="table-cell">
-          <input class="with-gap" name="group1" ng-model="$ctrl.searchData.options.orderBy" type="radio" id="options-4" value="rate"  />
-          <label for="options-4">
-            好评率
-          </label>
-        </span>
-      </div>
-      <div class=" table-display">
-        <span class="table-cell">
-          <input type="checkbox" id="test5" />
-          <label for="test5">Red</label>
-        </span>
-        <span class="table-cell">
-          <a class="waves-effect waves-light btn" ng-click="$ctrl.searchData.startSearch()">
-            Search </a>
-        </span>
+  <div class="table-display valign center-align">
 
-      </div>
-    </li>
-  </ul>
+    <input type="checkbox" id="test5" ng-model="$ctrl.searchData.options.searchInsideMap"/>
+    <label for="test5">在地图范围内搜索</label>
+
+  </div>
+  <a class="waves-effect waves-light btn right" ng-click="$ctrl.searchData.startSearch()">
+  Search </a>
+
 </div>
 
