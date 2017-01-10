@@ -3,12 +3,12 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppData',
-    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData) {
+    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData','qgsMainAppDataSearch',
+    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData,qgsMainAppDataSearch) {
   
   var headerData={};
   var footerData={};
-  var searchData={};
+  var searchData=qgsMainAppDataSearch.getSearchData();
   var userData={test1:'[it is ready]'};
   var mapData=amapMainData.getMapData();
 
@@ -42,55 +42,8 @@ angular.module('qgs-main')
     {text:'我的',icon:'user',href:'/mz-js.my',hdType:2,onClick:0,active:0}
   ];
   
-  //searchData
-  searchData.result=0;
-  searchData.searching=0;
-  searchData.resultTime=0;
-  searchData.options={orderBy:'auto',searchInsideMap:true};
-  searchData.searchWord='';
-  searchData.searchPlaceholder='商户名称/地址/电话';
-  searchData.searchList = []; //TODO: values will get from API
-
-  searchData.clearSearchWord=function(){
-    searchData.searchWord='';
-  }
-
-  searchData.startSearch=function(){
-    var bd;
-    var serchPara={s:searchData.searchWord};
-
-    if(mapData.map) {
-      bd=mapData.map.getBounds( );
-      mapData.northeast=bd.northeast;
-      mapData.southwest=bd.southwest;
-      if(searchData.options.searchInsideMap) {
-        serchPara.latlng= 
-          Math.floor(1e7 * mapData.southwest.lat ) + ',' +
-          Math.floor(1e7 * mapData.southwest.lng ) + ',' +
-          Math.floor(1e7 * mapData.northeast.lat ) + ',' +
-          Math.floor(1e7 * mapData.northeast.lng );
-      }
-      
-    }
-    $log.log('serchPara ', serchPara);
-    
-    searchData.searching=true;
-    searchData.result=qgsMainApi.search.get(
-      serchPara,
-      function(){searchData.searching=false;searchData.resultTime= +new Date()}
-    );
-
-    $location.url('/mz-user.search');
-  }
-  
-  // madData
-  amapMainData.initMap();
-  
   
   //factory functions
-  
-  
-  
   function activeTabByPath(p) {
     $log.log('activeTabByPath',p);
     for(var i=footerData.tabs.length;i--; ){

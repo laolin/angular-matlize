@@ -10,7 +10,7 @@ angular.module('amap-main')
         mapData.showMapTo=showMapTo;
         
         
-        
+        initMap();
         return {
           initMap:initMap,
           showMapTo:showMapTo,
