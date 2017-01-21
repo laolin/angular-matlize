@@ -18,11 +18,12 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     cleanCSS = require('gulp-clean-css'),
     prefix = require('gulp-autoprefixer'),
-    minifyHTML = require('gulp-minify-html'),
+    htmlmin = require('gulp-htmlmin'),
     imagemin = require('gulp-imagemin'),
     templateCache = require('gulp-angular-templatecache'),
 
-    
+    wiredep = require('wiredep').stream,
+
     notify = require('gulp-notify'),
     //order = require('gulp-order'),
     print = require('gulp-print');
@@ -72,18 +73,18 @@ function handleError(err) {
 
 gulp.task('templatecache', function () {
   return gulp.src('app/**/*.template.html')
-    .pipe(minifyHTML({empty: true}))
+    .pipe(htmlmin({collapseWhitespace: true,removeComments: true}))
     //指定templatecache生成的目录、文件名，以便合并到 useref 指定的js文件中
     .pipe(templateCache(configObj.tplFile,{module: configObj.tplModule}))
     .pipe(gulp.dest(configObj.path.tmp));
 });
 
 
-gulp.task('html-useref',function(){
+gulp.task('html-useref',['wiredep'], function(){
     return gulp.src('app/index.html')
         .pipe(useref())
         .pipe(gulpif('*.css', cleanCSS()))
-        .pipe(gulpif('*.html', minifyHTML()))
+        .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true,removeComments: true})))
         .pipe(gulp.dest(configObj.path.dist));
 
 });
@@ -98,19 +99,32 @@ gulp.task('copyCfg', function() {
     .pipe(gulp.dest(configObj.path.dist))
 });
 
+//font-awesome 的字体文件
 gulp.task('copyFonts1', function() {
-    return gulp.src('app/assets/**/fonts/*.*')
+    return gulp.src('app/bower_components/font-awesome/fonts/*.*')
     .pipe(flatten())
     .pipe(gulp.dest(configObj.path.dist+'/assets/fonts'))
 });
+
+//materialize 的字体文件。这些字体其实没用上
+//所以这个可以不运行
 gulp.task('copyFonts2', function() {
-    return gulp.src( 'app/assets/**/fonts/roboto/*.*')
+    return gulp.src( 'app/bower_components/materialize/fonts/roboto/*.*')
     .pipe(flatten())
     .pipe(gulp.dest(configObj.path.dist+'/assets/fonts/roboto'))
 });
 
+gulp.task('wiredep', function() {
+    return gulp.src( 'app/index-src.html')
+    .pipe(wiredep({
+      optional: 'configuration',
+      goes: 'here'
+    }))
+    .pipe(rename('index.html'))
+    .pipe(gulp.dest('app'));
+});
 
-gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyFonts2','copyCfg','copyImg'], function(){
+gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyCfg','copyImg'], function(){
   return gulp.src([configObj.path.dist+'/'+configObj.useref_jspath+'/'+configObj.useref_jsfile,
           configObj.path.tmp+'/'+configObj.tplFile])
     .pipe(concat(configObj.useref_jsfile))

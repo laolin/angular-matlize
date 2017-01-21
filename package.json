@@ -14,10 +14,10 @@
     "gulp-concat": "^2.6.1",
     "gulp-filter": "^5.0.0",
     "gulp-flatten": "^0.3.1",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-load-plugins": "^1.4.0",
-    "gulp-minify-html": "^1.0.6",
     "gulp-notify": "^2.2.0",
     "gulp-print": "^2.0.1",
     "gulp-rename": "^1.2.2",
@@ -39,7 +39,7 @@
     "0" : "0"
   },
   "scripts": {
-    "postinstall": "gulp",
+    "postinstall": "bower install && gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
