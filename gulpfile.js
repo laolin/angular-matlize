@@ -102,7 +102,7 @@ gulp.task('copyCfg', function() {
 //font-awesome 的字体文件
 gulp.task('copyFonts1', function() {
     return gulp.src('app/bower_components/font-awesome/fonts/*.*')
-    .pipe(flatten())
+    //.pipe(flatten())
     .pipe(gulp.dest(configObj.path.dist+'/assets/fonts'))
 });
 
@@ -110,7 +110,7 @@ gulp.task('copyFonts1', function() {
 //所以这个可以不运行
 gulp.task('copyFonts2', function() {
     return gulp.src( 'app/bower_components/materialize/fonts/roboto/*.*')
-    .pipe(flatten())
+    //.pipe(flatten())
     .pipe(gulp.dest(configObj.path.dist+'/assets/fonts/roboto'))
 });
 
