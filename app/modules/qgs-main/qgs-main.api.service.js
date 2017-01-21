@@ -14,13 +14,19 @@ angular.module('qgs-main')
       cityList: $resource( this.appCfg.apiRoot+'/mzapi/citylist' , {} , {
         get: {
           method: 'JSONP',
-          params: {callback: 'JSON_CALLBACK'}
+          params: { }
+        }
+      }),
+      reginList: $resource( this.appCfg.apiRoot+'/mzapi/reginlist' , {} , {
+        get: {
+          method: 'JSONP',
+          params: { }
         }
       }),
       search: $resource( this.appCfg.apiRoot+'/foot/search' , {} , {
         get: {
           method: 'JSONP',
-          params: {callback: 'JSON_CALLBACK',s:'@s'}
+          params: { s:'@s'}
         }
       }),
     };//end of return

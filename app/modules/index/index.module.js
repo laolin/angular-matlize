@@ -5,7 +5,7 @@ angular.module('myApp.index', ['ngRoute'])
   $routeProvider.when('/index', {
     templateUrl: 'modules/index/index.template.html',
     controller: ['$scope','$http','$log','$interval',function indexCtrl($scope,$http,$log,$interval) {
-      //$http.jsonp('http://api.laolin.com/hello/ip?callback=JSON_CALLBACK&r='+Date.now()).then(function(response) {
+      //$http.jsonp('http://api.laolin.com/hello/ip?r='+Date.now()).then(function(response) {
       //    $log.log(response);
       //    $scope.ip = response.data.ip;
       //  });
