@@ -7,9 +7,12 @@
   <title ng-bind='appInfo.pageTitle'>Welcome</title>
   <meta name="description" content="">
   
-  
+  <!-- build:css assets/css/app.css -->
   <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/lib/materialize-0.97.8/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <!-- endbuild -->
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -18,7 +21,6 @@
   <![endif]-->
     
   
-  <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 <body ng-controller='qgsMainCtrl as qgs'>
@@ -31,6 +33,7 @@
   </div>
   <qgs-ui-footer id="main-footer" footer-data='appData.footerData' class="main-tabs"></qgs-ui-footer>
 
+  <!-- build:js assets/js/app.js -->
   <script src="assets/lib/angular-1.5.8/angular.min.js"></script>
   <script src="assets/lib/angular-1.5.8/angular-route.min.js"></script>
   <script src="assets/lib/angular-1.5.8/angular-resource.min.js"></script>
@@ -70,6 +73,7 @@
   
   <script src="modules/app.module.js"></script>
   <script src="assets/js/common.js"></script>
+  <!-- endbuild -->
   
   
   <script src="qgs-main.app-config.js"></script>
