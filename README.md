@@ -30,7 +30,7 @@ Files are grouped structurally (each section of the app being self contained wit
 --------- xxx.service.js (各种 js )
 --------- xxx.template.html (一定要以 .template.html结尾，打包模板文件时时的寻找标记)
 /dist (this is the gulp pipeline file output destination)
-/app/libs (以后用, bower components install here)
+/app/bower_components (bower components install here)
 /node_modules (npm installations go here)
 ```
 
