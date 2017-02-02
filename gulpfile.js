@@ -26,7 +26,7 @@ var gulp = require('gulp'),
 
     notify = require('gulp-notify'),
     //order = require('gulp-order'),
-    print = require('gulp-print');
+    debug = require('gulp-debug');
 
 /*
 1. dist 目录下直接放的文件只有两个
@@ -124,11 +124,11 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyCfg','copyImg'], function(){
+gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyImg'], function(){
   return gulp.src([configObj.path.dist+'/'+configObj.useref_jspath+'/'+configObj.useref_jsfile,
           configObj.path.tmp+'/'+configObj.tplFile])
     .pipe(concat(configObj.useref_jsfile))
     //.pipe(ngAnnotate())
-    .pipe(uglify())
+    .pipe(uglify({compress: { drop_console: true }}))
     .pipe(gulp.dest(configObj.path.dist+'/'+configObj.useref_jspath));
 });
