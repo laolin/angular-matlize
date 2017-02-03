@@ -8,9 +8,6 @@ angular.module('myApp.index', ['ngRoute'])
       function ($scope,$location,$log,$interval,qgsMainAppData) {
         var userData=qgsMainAppData.getUserData();
         $scope.userData=userData;
-        if(!userData.token) {
-          $location.path( "/wx-login" );
-        }
       }
     ]
   })

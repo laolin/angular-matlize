@@ -67,7 +67,12 @@ angular.module('qgs-main')
   
   function startPathMonitor() {
     $rootScope.$on('$routeChangeSuccess', function() {
-      activeTabByPath($location.path());
+      
+      if(! userData || !userData.token) {
+        $location.path( "/wx-login" );
+      } else {
+        activeTabByPath($location.path());
+      }
     });
   }
   
