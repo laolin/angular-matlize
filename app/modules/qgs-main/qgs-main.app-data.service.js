@@ -39,6 +39,7 @@ angular.module('qgs-main')
   footerData.tabs=[
     {text:'搜索',icon:'search',href:'/mz-user.search',hdType:1,onClick:0,active:1},
     {text:'测试',icon:'cog',href:'/mz-js.home',hdType:2,onClick:0,active:0},
+    {text:'微信',icon:'comment',href:'/wx-login',hdType:2,onClick:0,active:0},
     {text:'我的',icon:'user',href:'/mz-js.my',hdType:2,onClick:0,active:0}
   ];
   

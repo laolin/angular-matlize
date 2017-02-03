@@ -10,6 +10,7 @@ angular.module('myApp', [
     'mz-js',//满足满意-技师
     'mz-user',//满足满意-用户
     'amap-main',//高德地图
+    'wx-login',
     
     'ngRoute'
   ]).

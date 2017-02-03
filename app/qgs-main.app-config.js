@@ -2,9 +2,10 @@
 (function(){
 var cfg={
 //-- start config data -----------
-  apiRoot: '../../Api-core/src',
+  //apiRoot: '../../api-qgs-shops/src',
+  apiRoot: 'http://qinggaoshou.com/api-1.0',
 
-  version: '2.02'
+  version: '3.01'
 //-- end config data -----------
 }
 angular.module('qgs-main')
