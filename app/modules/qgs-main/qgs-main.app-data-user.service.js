@@ -3,10 +3,12 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppDataUser',
-    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi) {
-  
+    ['$route','$window','$location','$log','$timeout','qgsMainApi',
+    function($route, $window,$location,$log,$timeout,qgsMainApi) {
+  var KEY_USERDATA='_appdata.userdata';
   var userData={};
+  var u_saved=JSON.parse($window.localStorage.getItem(KEY_USERDATA));
+  setUserData(u_saved);
   this.userData=userData;
 
   
@@ -18,6 +20,7 @@ angular.module('qgs-main')
     for (var attr in obj) {
       if (obj.hasOwnProperty(attr)) userData[attr] = obj[attr];
     }
+    $window.localStorage.setItem(KEY_USERDATA,JSON.stringify(userData));
     return userData;
   }
   
