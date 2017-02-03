@@ -3,13 +3,13 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppData',
-    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData','qgsMainAppDataSearch',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData,qgsMainAppDataSearch) {
+    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData','qgsMainAppDataSearch','qgsMainAppDataUser',
+    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData,qgsMainAppDataSearch,qgsMainAppDataUser) {
   
   var headerData={};
   var footerData={};
   var searchData=qgsMainAppDataSearch.getSearchData();
-  var userData={test1:'[it is ready]'};
+  var userData=qgsMainAppDataUser.getUserData();
   var mapData=amapMainData.getMapData();
 
   var appData=this.appData={

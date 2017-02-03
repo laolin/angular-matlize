@@ -4,8 +4,8 @@ angular.module('wx-login')
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/wx-callback', {
     template:'<div>calling back!</div>',
-    controller: ['$scope','$log','$location','$http','qgsMainAppConfig',
-      function($scope,$log,$location,$http,qgsMainAppConfig) {
+    controller: ['$scope','$log','$location','$http','qgsMainAppConfig','qgsMainAppDataUser','qgsMainAppData',
+      function($scope,$log,$location,$http,qgsMainAppConfig,qgsMainAppDataUser,qgsMainAppData) {
         var parseQueryString = function() {
           var str = window.location.search;
           var objURL = {};
@@ -22,7 +22,12 @@ angular.module('wx-login')
           +srh._ret_code+'&app='+srh._ret_app;
         $http.jsonp(url).
           then(function(data, status, headers, config) {
-              $log.log('Recall OK!',data);
+            if(data.data.errcode!=0) {
+              $log.log('Recall Error!2',data.data.errcode,data.data.msg);
+            } else {
+              $log.log('Recall OK!2',data.data.data);
+              qgsMainAppDataUser.setUserData(data.data.data);
+            }
           });
       }
     ]
