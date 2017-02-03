@@ -3,10 +3,11 @@
 angular.module('myApp.index', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
-    template: 'Welcome',
+    templateUrl: 'modules/index/index.root.template.html',
     controller: ['$scope','$location','$log','$interval','qgsMainAppData',
       function ($scope,$location,$log,$interval,qgsMainAppData) {
         var userData=qgsMainAppData.getUserData();
+        $scope.userData=userData;
         if(!userData.token) {
           $location.path( "/wx-login" );
         }

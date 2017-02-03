@@ -24,9 +24,11 @@ angular.module('wx-login')
           then(function(data, status, headers, config) {
             if(data.data.errcode!=0) {
               $log.log('Recall Error!2',data.data.errcode,data.data.msg);
+              $location.path( "/" );
             } else {
               $log.log('Recall OK!2',data.data.data);
               qgsMainAppDataUser.setUserData(data.data.data);
+              $location.path( "/" );
             }
           });
       }
@@ -34,8 +36,13 @@ angular.module('wx-login')
   })
   .when('/wx-login', {
     templateUrl: 'modules/wx-login/wx-login.template.html',
-    controller: ['$scope','$http','$log','$interval','qgsMainAppConfig',
-      function($scope,$http,$log,$interval,qgsMainAppConfig) {
+    controller: ['$scope','$location','$log','$interval','qgsMainAppConfig','qgsMainAppDataUser',
+      function($scope,$location,$log,$interval,qgsMainAppConfig,qgsMainAppDataUser) {
+        var ud=qgsMainAppDataUser.getUserData();             
+        if(ud.token) {
+          $location.path( "/" );
+          return;
+        }
 
         var wx_src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js";
 
