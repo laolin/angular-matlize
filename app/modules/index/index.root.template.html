@@ -1,5 +1,15 @@
 
 <div>
-  <span ng-bind='userData'>userData</span>
+  <span ng-if='! userData.token'>
+    <a href='/wx-login'>请登录</a>
+  </span>
+  <div class="center-align" ng-if='userData.token'>
+    <div class="center-align" ng-if='userData.wxinfo'>
+      欢迎您，{{userData.wxinfo.nickname}}
+      <a href="#" ng-click='logout()'>logout</a>
+      <br/>
+      <img class="circle user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
+    </div>
+  </div>
 </div>
 

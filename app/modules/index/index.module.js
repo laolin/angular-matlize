@@ -4,10 +4,15 @@ angular.module('myApp.index', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'modules/index/index.root.template.html',
-    controller: ['$scope','$location','$log','$interval','qgsMainAppData',
-      function ($scope,$location,$log,$interval,qgsMainAppData) {
-        var userData=qgsMainAppData.getUserData();
+    controller: ['$scope','$location','$log','$interval','qgsMainAppDataUser',
+      function ($scope,$location,$log,$interval,qgsMainAppDataUser) {
+        var userData=qgsMainAppDataUser.getUserData();
         $scope.userData=userData;
+        $scope.logout=function() {
+          userData.token='';
+          qgsMainAppDataUser.setUserData({});//save to localStorage
+          $location.path('/wx-login');
+        }
       }
     ]
   })
