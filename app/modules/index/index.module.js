@@ -2,6 +2,17 @@
 
 angular.module('myApp.index', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/', {
+    template: 'Welcome',
+    controller: ['$scope','$location','$log','$interval','qgsMainAppData',
+      function ($scope,$location,$log,$interval,qgsMainAppData) {
+        var userData=qgsMainAppData.getUserData();
+        if(!userData.token) {
+          $location.path( "/wx-login" );
+        }
+      }
+    ]
+  })
   $routeProvider.when('/index', {
     templateUrl: 'modules/index/index.template.html',
     controller: ['$scope','$http','$log','$interval',function indexCtrl($scope,$http,$log,$interval) {
