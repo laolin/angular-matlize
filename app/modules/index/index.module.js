@@ -9,8 +9,8 @@ angular.module('myApp.index', ['ngRoute'])
         var userData=qgsMainAppDataUser.getUserData();
         $scope.userData=userData;
         $scope.logout=function() {
-          userData.token='';
-          qgsMainAppDataUser.saveUserDataToLocalStorage();//Update to localStorage
+          //userData.token='';
+          qgsMainAppDataUser.setUserData({});//Update to localStorage
           $location.path('/wx-login');
         }
       }

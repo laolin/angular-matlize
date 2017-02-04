@@ -21,7 +21,7 @@ angular.module('qgs-main')
   }
   function setUserData(obj) {
     for (var attr in userData) {//由于外部引用了userData变量，故不能重赋值。只能修改属性。
-      if (obj.hasOwnProperty(attr)) delete userData[attr];
+      if (userData.hasOwnProperty(attr)) delete userData[attr];
     }
     for (var attr in obj) {
       if (obj.hasOwnProperty(attr)) userData[attr] = obj[attr];
