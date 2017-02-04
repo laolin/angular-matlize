@@ -16,15 +16,22 @@ angular.module('qgs-main')
   function getUserData() {
     return userData;
   }
+  function saveUserDataToLocalStorage() {
+    $window.localStorage.setItem(KEY_USERDATA,JSON.stringify(userData));
+  }
   function setUserData(obj) {
+    for (var attr in userData) {//由于外部引用了userData变量，故不能重赋值。只能修改属性。
+      if (obj.hasOwnProperty(attr)) delete userData[attr];
+    }
     for (var attr in obj) {
       if (obj.hasOwnProperty(attr)) userData[attr] = obj[attr];
     }
-    $window.localStorage.setItem(KEY_USERDATA,JSON.stringify(userData));
+    saveUserDataToLocalStorage();
     return userData;
   }
   
   return {
+    saveUserDataToLocalStorage:saveUserDataToLocalStorage,
     getUserData:getUserData,
     setUserData:setUserData
   }
