@@ -55,24 +55,28 @@ angular.module('amap-main')
         function initMap(options) {
           if(mapData.inInit)return;
           $log.log("Loading AMap ...",mapData.inInit);
-          mapData.inInit=true;
+          mapData.inInit=1;
           
           if(typeof(options)=='object')setMapOptions(options);
           if(typeof (AMap) == 'undefined')loadMapScript()
           $timeout(wait_init_map, 10);
           
           function wait_init_map() {
-            $log.log("wait_init_map ...");
+            if(mapData.inInit++ > 20 ) {
+              //TODO
+              //load map error, check network please.
+            }
+            $log.log("wait_init_map ...",mapData.inInit);
             if(typeof (AMap) == 'undefined' 
                 || typeof (AMap.ToolBar) == 'undefined'
                 || typeof (AMap.Geocoder) == 'undefined'
                 || typeof (AMap.Map) == 'undefined'
                 ) {
-              $timeout(wait_init_map, 100);
+              $timeout(wait_init_map, mapData.inInit * mapData.inInit * 100);
             }
             else
               _init_map();
-              mapData.inInit=false;
+              //mapData.inInit=false;
           }
           //initMap 直接执行的语句结束
           
