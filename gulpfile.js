@@ -124,7 +124,7 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyImg'], function(){
+gulp.task('default', ['html-useref', 'templatecache','copyFonts1','copyImg','copyCfg'], function(){
   return gulp.src([configObj.path.dist+'/'+configObj.useref_jspath+'/'+configObj.useref_jsfile,
           configObj.path.tmp+'/'+configObj.tplFile])
     .pipe(concat(configObj.useref_jsfile))

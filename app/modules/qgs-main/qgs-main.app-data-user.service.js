@@ -3,8 +3,8 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppDataUser',
-    ['$route','$window','$location','$log','$timeout','qgsMainApi',
-    function($route, $window,$location,$log,$timeout,qgsMainApi) {
+    ['$route','$window','$location','$log','$timeout',
+    function($route, $window,$location,$log,$timeout) {
   var KEY_USERDATA='_appdata.userdata';
   var userData={};
   var u_saved=JSON.parse($window.localStorage.getItem(KEY_USERDATA));

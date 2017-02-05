@@ -2,12 +2,27 @@
 (function(){
 
 angular.module('qgs-main')
-.factory('qgsMainApi',['$log','$resource','qgsMainAppConfig',
-  function($log,$resource,qgsMainAppConfig) {
+.factory('qgsMainApi',['$log','$resource','qgsMainAppConfig','qgsMainAppDataUser',
+  function($log,$resource,qgsMainAppConfig,qgsMainAppDataUser) {
     
     
     this.appCfg=qgsMainAppConfig();
     $log.log('cfg:',this.appCfg);
+    
+    var genSignature=function(dat,api,call) {
+      var user=qgsMainAppDataUser.getUserData();
+      $log.log('user:',user);
+      var dt=new Date()
+      var tim=Math.round(dt.getTime()/1000) -8*3600- dt.getTimezoneOffset()*60;//修正为东8区
+ 
+      dat.uid=user.uid;
+      dat.tokenid=user.tokenid;
+      
+      dat.timestamp= tim;
+      dat.api_signature=md5(api+call+user.uid+user.token+tim);
+      $log.log('md5:',api+call+user.uid+user.token+tim,dat);
+      return dat;
+    }
     
 
     return {
@@ -26,7 +41,7 @@ angular.module('qgs-main')
       search: $resource( this.appCfg.apiRoot+'/foot/search' , {} , {
         get: {
           method: 'JSONP',
-          params: { s:'@s'}
+          params: genSignature({ s:'@s'},'foot','search')
         }
       }),
     };//end of return
