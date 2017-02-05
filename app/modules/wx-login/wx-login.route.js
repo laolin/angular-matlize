@@ -4,8 +4,8 @@ angular.module('wx-login')
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/wx-callback', {
     template:'<div>calling back!</div>',
-    controller: ['$scope','$log','$location','$http','qgsMainAppConfig','qgsMainAppDataUser','qgsMainAppData',
-      function($scope,$log,$location,$http,qgsMainAppConfig,qgsMainAppDataUser,qgsMainAppData) {
+    controller: ['$scope','$log','$location','$http','qgsMainAppConfig','qgsMainAppData',
+      function($scope,$log,$location,$http,qgsMainAppConfig,qgsMainAppData) {
         var srh=$location.search();
         var url=qgsMainAppConfig().apiWxAuth+"/bindwx/callback_auth?code="
           +srh._ret_code+'&app='+srh._ret_app;
@@ -16,18 +16,19 @@ angular.module('wx-login')
               $location.path( "/" );
             } else {
               $log.log('Recall OK!2',data.data.data);
-              qgsMainAppDataUser.setUserData(data.data.data);
+              appData=qgsMainAppData.getAppData();
+              appData.userDataService.setUserData(data.data.data);
               $location.path( "/" );
             }
           });
       }
     ]
-  })
+  })//qgsMainAppDataUser
   .when('/wx-login', {
     templateUrl: 'modules/wx-login/wx-login.template.html',
-    controller: ['$scope','$location','$log','$interval','qgsMainAppConfig','qgsMainAppDataUser',
-      function($scope,$location,$log,$interval,qgsMainAppConfig,qgsMainAppDataUser) {
-        var ud=qgsMainAppDataUser.getUserData();             
+    controller: ['$scope','$location','$log','$interval','qgsMainAppConfig','qgsMainAppData',
+      function($scope,$location,$log,$interval,qgsMainAppConfig,qgsMainAppData) {
+        var ud=qgsMainAppData.getAppData().userData;             
         if(ud.token) {
           $location.path( "/" );
           return;

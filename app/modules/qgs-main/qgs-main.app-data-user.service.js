@@ -1,16 +1,17 @@
 'use strict';
 (function(){
 
+var KEY_USERDATA='QGS_appdata.userdata';
+
 angular.module('qgs-main')
 .factory('qgsMainAppDataUser',
     ['$route','$window','$location','$log','$timeout',
     function($route, $window,$location,$log,$timeout) {
-  var KEY_USERDATA='_appdata.userdata';
   var userData={};
   var u_saved=JSON.parse($window.localStorage.getItem(KEY_USERDATA));
   setUserData(u_saved);
   this.userData=userData;
-
+  
   
   //factory functions
   function getUserData() {
@@ -41,7 +42,6 @@ angular.module('qgs-main')
     
     dat.timestamp= tim;
     dat.api_signature=md5(api+call+userData.uid+userData.token+tim);
-    $log.log('md5:',api+call+userData.uid+userData.token+tim,dat);
     return dat;
   }
   

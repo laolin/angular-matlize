@@ -1,11 +1,16 @@
 'use strict';
 (function(){
+  
+var KEY_CLIENTID='QGS_appdata.clientId';
+
 
 angular.module('qgs-main')
 .factory('qgsMainAppData',
-    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData','qgsMainAppDataSearch','qgsMainAppDataUser',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData,qgsMainAppDataSearch,qgsMainAppDataUser) {
+    ['$route','$rootScope','$location','$log','$timeout','$http','$window','qgsMainAppConfig','qgsMainApi','amapMainData','qgsMainAppDataSearch','qgsMainAppDataUser',
+    function($route, $rootScope,$location,$log,$timeout,$http,$window,qgsMainAppConfig,qgsMainApi,amapMainData,qgsMainAppDataSearch,qgsMainAppDataUser) {
   
+  var appCfg=qgsMainAppConfig();
+
   var headerData={};
   var footerData={};
   var searchData=qgsMainAppDataSearch.getSearchData();
@@ -13,12 +18,20 @@ angular.module('qgs-main')
   var mapData=amapMainData.getMapData();
 
   var appData=this.appData={
+    isWeixinBrowser:(/micromessenger/i).test(navigator.userAgent),
+    clientId:'wait for init',
+    appCfg:appCfg,
+    
+    
     headerData:headerData,
     footerData:footerData,
     searchData:searchData,
     userData:userData,
+    userDataService:qgsMainAppDataUser,
     mapData:mapData
   }
+  initClientId();
+
   window.appData=appData;//export to global
  
   // headerData
@@ -78,6 +91,25 @@ angular.module('qgs-main')
   
   function getSearchData() {
     return searchData;
+  }
+
+  //
+  function initClientId() {
+    $window
+    var saved_id= $window.localStorage.getItem(KEY_CLIENTID);
+    if(saved_id) {
+      return appData.clientId=saved_id;
+    }
+      
+    
+    return $http.jsonp(appCfg.apiRoot+'/hello/ip').then(function(response){
+      if(response.data.errcode !=0){
+        appData.clientId=md5('0.0.0.0'+'~'+$location.host()+(+new Date()));//error
+      } else {
+        appData.clientId=md5(response.data.ip+'~'+$location.host()+(+new Date()));//
+      }
+      $window.localStorage.setItem(KEY_CLIENTID,appData.clientId);
+    });
   }
   
   return {
