@@ -6,7 +6,11 @@ var cfg={
   apiRoot: 'http://api.qinggaoshou.com/api-1.0', //一般的API
   apiWxAuth: 'http://qinggaoshou.com/api-1.0', //WX 授权 callback 域名限制的URI
 
-  version: '3.01'
+  wxApp:[
+    {name:'qgs-web',id:'wx8fb342a27567fee7'},
+    {name:'qgs-mp',id:'wx93301b9f5ddf5c8f'}
+  ],
+  version: '4.00'
 //-- end config data -----------
 }
 angular.module('qgs-main')
