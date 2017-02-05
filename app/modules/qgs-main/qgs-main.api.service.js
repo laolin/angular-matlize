@@ -8,22 +8,6 @@ angular.module('qgs-main')
     
     this.appCfg=qgsMainAppConfig();
     $log.log('cfg:',this.appCfg);
-    
-    var genSignature=function(dat,api,call) {
-      var user=qgsMainAppDataUser.getUserData();
-      $log.log('user:',user);
-      var dt=new Date()
-      var tim=Math.round(dt.getTime()/1000) -8*3600- dt.getTimezoneOffset()*60;//修正为东8区
- 
-      dat.uid=user.uid;
-      dat.tokenid=user.tokenid;
-      
-      dat.timestamp= tim;
-      dat.api_signature=md5(api+call+user.uid+user.token+tim);
-      $log.log('md5:',api+call+user.uid+user.token+tim,dat);
-      return dat;
-    }
-    
 
     return {
       cityList: $resource( this.appCfg.apiRoot+'/mzapi/citylist' , {} , {
@@ -41,7 +25,7 @@ angular.module('qgs-main')
       search: $resource( this.appCfg.apiRoot+'/foot/search' , {} , {
         get: {
           method: 'JSONP',
-          params: genSignature({ s:'@s'},'foot','search')
+          params: { s:'@s'}
         }
       }),
     };//end of return

@@ -30,7 +30,23 @@ angular.module('qgs-main')
     return userData;
   }
   
+
+  //
+  function addApiSignature(dat,api,call) {
+    var dt=new Date()
+    var tim=Math.round(dt.getTime()/1000) -8*3600- dt.getTimezoneOffset()*60;//修正为东8区
+
+    dat.uid=userData.uid;
+    dat.tokenid=userData.tokenid;
+    
+    dat.timestamp= tim;
+    dat.api_signature=md5(api+call+userData.uid+userData.token+tim);
+    $log.log('md5:',api+call+userData.uid+userData.token+tim,dat);
+    return dat;
+  }
+  
   return {
+    addApiSignature:addApiSignature,
     saveUserDataToLocalStorage:saveUserDataToLocalStorage,
     getUserData:getUserData,
     setUserData:setUserData

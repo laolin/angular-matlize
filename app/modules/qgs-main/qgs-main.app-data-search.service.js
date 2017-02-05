@@ -3,8 +3,8 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppDataSearch',
-    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData',
-    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData) {
+    ['$route','$rootScope','$location','$log','$timeout','qgsMainApi','amapMainData','qgsMainAppDataUser',
+    function($route, $rootScope,$location,$log,$timeout,qgsMainApi,amapMainData,qgsMainAppDataUser) {
   
   var searchData={};
   var mapData=amapMainData.getMapData();
@@ -42,7 +42,7 @@ angular.module('qgs-main')
     
     searchData.searching=true;
     searchData.result=qgsMainApi.search.get(
-      serchPara,
+      qgsMainAppDataUser.addApiSignature(serchPara,'foot','search'),
       function(){searchData.searching=false;searchData.resultTime= +new Date()}
     );
 
