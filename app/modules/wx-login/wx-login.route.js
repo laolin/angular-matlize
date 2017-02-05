@@ -6,19 +6,8 @@ angular.module('wx-login')
     template:'<div>calling back!</div>',
     controller: ['$scope','$log','$location','$http','qgsMainAppConfig','qgsMainAppDataUser','qgsMainAppData',
       function($scope,$log,$location,$http,qgsMainAppConfig,qgsMainAppDataUser,qgsMainAppData) {
-        var parseQueryString = function() {
-          var str = window.location.search;
-          var objURL = {};
-          str.replace(
-            new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
-            function( $0, $1, $2, $3 ){
-              objURL[ $1 ] = decodeURIComponent($3);
-            }
-          );
-          return objURL;
-        };
-        var srh=parseQueryString();
-        var url=qgsMainAppConfig().apiRoot+"/bindwx/callback_auth?code="
+        var srh=$location.search();
+        var url=qgsMainAppConfig().apiWxAuth+"/bindwx/callback_auth?code="
           +srh._ret_code+'&app='+srh._ret_app;
         $http.jsonp(url).
           then(function(data, status, headers, config) {
@@ -51,7 +40,6 @@ angular.module('wx-login')
         } else {
           _wx_login();
         }
-
           
         function _wx_login() {
           var obj = new WxLogin({
@@ -59,8 +47,10 @@ angular.module('wx-login')
             appid: "wx8fb342a27567fee7", //qgs-web
             scope: "snsapi_login", 
             
-            redirect_uri: qgsMainAppConfig().apiRoot+"/bindwx/callback_xdom", 
-            state: encodeURIComponent("cb_xd~qgs-web~"+encodeURIComponent(location.href.split("#")[0]+"#!/wx-callback")),
+            redirect_uri: qgsMainAppConfig().apiWxAuth+
+              "/bindwx/callback_bridge/"+
+              btoa(location.href.split("#")[0]+"#!/wx-callback"), 
+            state: "cb_xd~qgs-web",
             style: "",
             href: ""
           });
