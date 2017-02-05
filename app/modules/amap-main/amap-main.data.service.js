@@ -44,9 +44,13 @@ angular.module('amap-main')
               }
 
               var ele=document.getElementById(element_id);
-              ele.innerHTML='';
-              //地图放在指定的地方
-              ele.appendChild(mapData.div);
+              if(!ele){ 
+                $log.log('* showMapTo Error id#',element_id);
+              } else {
+                ele.innerHTML='';
+                //地图放在指定的地方
+                ele.appendChild(mapData.div);
+              }
             }
           }
         }

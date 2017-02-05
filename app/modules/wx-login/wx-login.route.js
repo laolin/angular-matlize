@@ -5,7 +5,7 @@ var MARK_API_CALLBACK='cb_xd';//和后端API的约定字符串
 angular.module('wx-login')
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/wx-callback', {
-    template:'<div>calling back!</div>',
+    template:' ',
     controller: ['$scope','$log','$location','$http','qgsMainAppData',
       function($scope,$log,$location,$http,qgsMainAppData) {
         var srh=$location.search();

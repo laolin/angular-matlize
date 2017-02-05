@@ -80,11 +80,11 @@ angular.module('qgs-main')
   function startPathMonitor() {
     $rootScope.$on('$routeChangeSuccess', function() {
       
-      if(! userData || !userData.token) {
-        $location.path( "/wx-login" );
-      } else {
+      //if(! userData || !userData.token) {
+      //  $location.path( "/wx-login" );
+      //} else {
         activeTabByPath($location.path());
-      }
+      //}
     });
   }
   

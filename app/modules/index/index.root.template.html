@@ -1,8 +1,8 @@
 
 <div>
-  <span ng-if='! userData.token'>
-    <a href='/wx-login'>请登录</a>
-  </span>
+  <div class="center-align" ng-if='! userData.token'>
+    您好，<a href='#!/wx-login'>请登录</a>
+  </div>
   <div class="center-align" ng-if='userData.token'>
     <div class="center-align" ng-if='userData.wxinfo'>
       欢迎您，{{userData.wxinfo.nickname}}
