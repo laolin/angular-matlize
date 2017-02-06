@@ -12,7 +12,7 @@ angular.module('qgs-main')
   searchData.result=0;
   searchData.searching=0;
   searchData.resultTime=0;
-  searchData.options={orderBy:'auto',searchInsideMap:true};
+  searchData.options={orderBy:'auto',searchInsideMap:true,countRes:20};
   searchData.searchWord='';
   searchData.searchPlaceholder='商户名称/地址/电话';
   searchData.searchList = []; //TODO: values will get from API
@@ -39,7 +39,7 @@ angular.module('qgs-main')
       
     }
     $log.log('serchPara ', serchPara);
-    
+    serchPara.count=searchData.options.countRes;
     searchData.searching=true;
     searchData.result=qgsMainApi.search.get(
       qgsMainAppDataUser.addApiSignature(serchPara,'foot','search'),

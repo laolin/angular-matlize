@@ -2,7 +2,11 @@
 <div class="search-options-wrapper valign-wrapper">
 
   <div class="table-display valign center-align">
-
+        <div class="input-field inline">
+            <input id="sh-res-number" type="number"  ng-model="$ctrl.searchData.options.countRes">
+            <label for="sh-res-number">数量</label>
+          </div>
+        
     <input type="checkbox" id="test5" ng-model="$ctrl.searchData.options.searchInsideMap"/>
     <label for="test5">在地图范围内搜索</label>
 
