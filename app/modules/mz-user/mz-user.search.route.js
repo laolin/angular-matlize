@@ -8,7 +8,7 @@ angular.module('mz-user')
       function mzUserSearchCtrl($scope,$http,$log,$location,qgsMainAppData) {
         var userData=qgsMainAppData.getUserData();
         if(! userData || !userData.token) {
-          return $location.path( "/wx-login" );
+          return $location.path( "/wx-login" ).search({pageTo: '/mz-user.search'});;
         }
 
       }
