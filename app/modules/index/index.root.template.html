@@ -1,17 +1,23 @@
 
 <div>
   <div class="center-align" ng-if='! userData.token'>
+    <br/>
+    <br/>
     您好，<a href='#!/wx-login'>请登录</a>
   </div>
   <div class="center-align" ng-if='userData.token'>
     <div class="center-align" ng-if='userData.wxinfo'>
+      <br/>
+      <br/>
+      <img class="circle user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
+      <br/>
+      <br/>
       欢迎您，{{userData.wxinfo.nickname}}
       <a href="#" ng-click='logout()'>
       <span ng-if='appData.isWeixinBrowser'>重登录</span>
       <span ng-if='! appData.isWeixinBrowser'>logout</span>
       </a>
       <br/>
-      <img class="circle user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
     </div>
   </div>
 </div>
