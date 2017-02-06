@@ -6,7 +6,10 @@
   <div class="center-align" ng-if='userData.token'>
     <div class="center-align" ng-if='userData.wxinfo'>
       欢迎您，{{userData.wxinfo.nickname}}
-      <a href="#" ng-click='logout()'>logout</a>
+      <a href="#" ng-click='logout()'>
+      <span ng-if='appData.isWeixinBrowser'>重登录</span>
+      <span ng-if='! appData.isWeixinBrowser'>logout</span>
+      </a>
       <br/>
       <img class="circle user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
     </div>

@@ -45,8 +45,8 @@ angular.module('qgs-main')
   
   
   headerData.leftLink='.';
-  headerData.headerText='查看消息';
-  headerData.headerMenu='账单详情';
+  headerData.headerText='Welcome';
+  headerData.headerMenu=' ';
   
   // footerData
   footerData.tabs=[
