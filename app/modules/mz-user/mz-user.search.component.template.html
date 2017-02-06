@@ -4,14 +4,25 @@
       <div class="indeterminate"></div>
   </div>
   
-  
+  <div class="center-align" ng-if='$ctrl.searchData.resultSelected >= 0'>
+    <a class="waves-effect waves-light btn" 
+    ng-click="$ctrl.searchData.searchAroundSelected()">
+    在
+    {{$ctrl.searchData.result.data[$ctrl.searchData.resultSelected].name}}
+    周边搜索
+    </a>
+  </div>
+
   <ul class="collection" ng-if='$ctrl.searchData.result.data'>
     <li class="valign-wrapper">
     <h6 class="valign">显示前{{$ctrl.searchData.result.data.length}}项</h6>
 	</li>
-    <li class="collection-item avatar" ng-repeat='d in $ctrl.searchData.result.data'>
-      <img src="assets/img/logo-32.png" alt="" class="circle">
-      <span class="title">{{d.name}}</span>
+    <li class="collection-item avatar"
+      ng-repeat='d in $ctrl.searchData.result.data'
+      ng-click='$ctrl.searchData.selectResult($index)'
+    >
+      <img src="assets/img/logo-32.png" alt="" class="circle" />
+      <span class="title">[{{$index+1}}]{{d.name}}</span>
       <p>{{d.addr}}<br>
          {{d.tel}}
       </p>

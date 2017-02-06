@@ -11,30 +11,31 @@ angular.module('amap-main')
       mapWidth: '@',
       mapHeight: '@'
     },
-    controller: ['$scope','$log','$timeout','$element','amapMainData',
-      function ($scope,$log,$timeout,$element,amapMainData){
+    controller: ['$scope','$log','$timeout','$compile','amapMainData',
+      function ($scope,$log,$timeout,$compile,amapMainData){
         var ctrl=this;
         var defWidth='100%';
         var defHeight='100%';
-        $scope.$ctrl.mapWidth=defWidth;
-        $scope.$ctrl.mapHeight=defHeight;
+        ctrl.mapWidth=defWidth;
+        ctrl.mapHeight=defHeight;
         
         amapMainData.showMapTo('amap-main-map-0');
-        
-        $scope.$watch(
-          function() { return ctrl.searchData.resultTime; },
-          function(newValue, oldValue) {
-            var data=ctrl.searchData.result.data;
-            _gen_mark(data);
-          }
-        );
+        ctrl.$onInit=function() {
+          $scope.$watch(
+            function() { return ctrl.searchData.resultTime; },
+            function(newValue, oldValue) {
+              var data=ctrl.searchData.result.data;
+              _gen_mark(data);
+            }
+          );
+        }
 
         var _marks=[];
+
         var _on_mark_click=function(o) {
           var i=o.target.__index;
-          ctrl.searchData.resultActiveIndex=i;
-          var lnglat=o.lnglat;
-          
+          ctrl.searchData.selectResult(i);
+          $scope.$apply();
         }
         var _gen_mark=function(data) {
           if(!data)return;

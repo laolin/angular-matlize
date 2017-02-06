@@ -106,6 +106,15 @@ angular.module('amap-main')
             //初始化地图后，再从 body 中移走
             mapData.div.parentNode.removeChild(mapData.div);
             mapData.div.style.display='';
+            
+            mapData.infoWindow = new AMap.InfoWindow({
+              content:'',
+              offset:{x:0,y:-20},
+              //position:,
+              showShadow:true,
+              autoMove:true
+            });
+            
           }
           function _saveMapBounds(msg) {
             $log.log('_saveMapBounds',msg);
