@@ -9,6 +9,7 @@ angular.module('mz-user')
   controller:['$scope','$http','$log','$interval','qgsMainAppData',
 	  function ($scope,$http,$log,$interval,qgsMainAppData) {
 
+      var ctrl=this;
     }
   ]
 });

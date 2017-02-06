@@ -1,3 +1,4 @@
+'use strict';
 (function(){
 
 angular.module('amap-main')
@@ -12,6 +13,7 @@ angular.module('amap-main')
     },
     controller: ['$scope','$log','$timeout','$element','amapMainData',
       function ($scope,$log,$timeout,$element,amapMainData){
+        var ctrl=this;
         var defWidth='100%';
         var defHeight='100%';
         $scope.$ctrl.mapWidth=defWidth;
@@ -20,14 +22,20 @@ angular.module('amap-main')
         amapMainData.showMapTo('amap-main-map-0');
         
         $scope.$watch(
-          function() { return $scope.$ctrl.searchData.resultTime; },
+          function() { return ctrl.searchData.resultTime; },
           function(newValue, oldValue) {
-            var data=$scope.$ctrl.searchData.result.data;
+            var data=ctrl.searchData.result.data;
             _gen_mark(data);
           }
         );
 
         var _marks=[];
+        var _on_mark_click=function(o) {
+          var i=o.target.__index;
+          ctrl.searchData.resultActiveIndex=i;
+          var lnglat=o.lnglat;
+          
+        }
         var _gen_mark=function(data) {
           if(!data)return;
           for(var i=_marks.length; i--;  ) {
@@ -39,9 +47,13 @@ angular.module('amap-main')
             _marks[i]= new AMap.Marker({
               position: data[i].lnglat.split(','),
               title: data[i].name,
+              //content
+              label:{content:1+i,offset:{x:0,y:-20}},
               animation: "AMAP_ANIMATION_DROP"
             });
-            _marks[i].setMap($scope.$ctrl.mapData.map);
+            _marks[i].__index=i; //标记，给on click用的 （不知道如何把i传给回调函数）
+            _marks[i].on('click',function(o){_on_mark_click(o)});
+            _marks[i].setMap(ctrl.mapData.map);
           }
 
           
