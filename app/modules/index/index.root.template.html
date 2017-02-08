@@ -1,15 +1,15 @@
 
 <div>
-  <div class="center-align" ng-if='! userData.token'>
+  <div class="text-center" ng-if='! userData.token'>
     <br/>
     <br/>
     您好，<a href='#!/wx-login'>请登录</a>
   </div>
-  <div class="center-align" ng-if='userData.token'>
-    <div class="center-align" ng-if='userData.wxinfo'>
+  <div class="text-center" ng-if='userData.token'>
+    <div class="text-center" ng-if='userData.wxinfo'>
       <br/>
       <br/>
-      <img class="circle user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
+      <img class="img-rounded user-icon-big" ng-src='{{userData.wxinfo.headimgurl}}'/>
       <br/>
       <br/>
       欢迎您，{{userData.wxinfo.nickname}}

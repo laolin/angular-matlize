@@ -40,14 +40,17 @@ angular.module('qgs-main')
   headerData.citySelected='loading';
   headerData.cityData = qgsMainApi.cityList.get(function(value,responseHeaders,status,statusText ){
       headerData.citySelected=headerData.cityData.data[0];
-      $timeout(function(){$('select').material_select()},78);
+      //$timeout(function(){$('select').material_select()},78);
     });
   
   
-  headerData.leftLink='.';
   headerData.headerText='Welcome';
-  headerData.headerMenu=' ';
   
+  headerData.widgets=[
+    {side:'left',link:'javascript:;',img:'assets/img/logo-32.png',text:''},
+    //{side:'right',link:'#!/abc/',img:'',text:'RR RR'},
+    {side:'right',link:'javascript:;',img:'',text:'测试中'}
+  ];
   // footerData
   footerData.tabs=[
     {text:'首页',icon:'home',href:'/',hdType:2,onClick:0,active:0},

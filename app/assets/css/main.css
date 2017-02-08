@@ -10,15 +10,12 @@ body {
   margin-bottom: 0px;/* Margin bottom by footer height */
 }
 
+/* ======================
+start #main-header 
+========================*/
 #main-header,#main-footer,#main-container{
   position: absolute;
   width: 100%;
-}
-#main-container a,
-#main-container p,
-#main-container span,
-#main-container div {
-  color:#222;
 }
 #main-header{
   z-index: 5;
@@ -26,64 +23,56 @@ body {
   height:56px;
   background-color:#f90;
 }
+#main-header ,
 #main-header a,
 #main-header span,
 #main-header div{
   color:#fff;
 }
 
-.main-header_wrapper {
+
+#main-header .left ,
+#main-header .right,
+#main-header .center {
   height:56px;
   line-height:56px;
+  padding-left:10px;
+  padding-right:10px;
+}
+#main-header .left {
+  float: left;
+  font-size:18px;
+}
+#main-header .right {
+  float: right;
+  font-size:12px;
+}
+#main-header .center {
+  text-align:center;
+  font-size:28px;
+}
+.main-header_container {
+  display: inline-block;
+  height: 100%;
   width: 100%;
   vertical-align: middle;
-  color:#fff;
-  padding:0 90px 0 40px;
-  text-align:center;
 }
-.main-header_wrapper i{ 
+.main-header_container img {
+  background: #3A6F9A;
+  vertical-align: middle;
+  max-height: 32px;
+  max-width: 160px;
+}
+
+.main-header_container i{ 
   cursor:pointer;
 }
-
-.main-header_title{ 
-  font-size:24px;
-}
-
-.main-header_left {
-  position:relative;
-  width:40px; 
-  height:100%;
-  float:left; 
-  margin-left:-40px; 
-  text-align:center;
-}
-.main-header_right {
-  position:relative;
-  width:80px;
-  height:56px;
-  line-height:56px;
-  float:right;
-  margin-right:-80px;
-  text-align:center;
-}
+/* ======================
+ END #main-header 
+========================*/
 
 
-.main-header_right input.select-dropdown  {
-  text-align:center;
-  font-size:14px ;
-  margin:0 0px 0 0 ;
-  height:56px ;
-  line-height:56px;
-  border:0;
-}
 
-.main-header_main{
-    float:left;
-    width:100% !important;
-    color:#fff;
-    font-size:16px;
-    margin:auto !important;
-}
 
 .round-search {
     border-radius: 15px;
@@ -131,6 +120,10 @@ body {
   color:#d80 !important;
 }
 
+
+/* ======================
+start #main-container 
+========================*/
 #main-container{
   height:auto !important;
   top:56px;
@@ -138,25 +131,39 @@ body {
   overflow: auto;
   background-color:#eee;
 }
+#main-container a,
+#main-container p,
+#main-container span,
+#main-container div {
+  color:#222;
+}
+/* ======================
+END #main-container 
+========================*/
 
 
+/* ======================
+start #main-footer 
+========================*/
 #main-footer{
   z-index: 500;
   bottom: 0;
-  height:56px;
+  height:55px;
   border-top:1px solid #ddd;
   background-color:#fff;
 }
-.main-tabs
-{    
+.main-tabs {
+  width:100%;
   display: table;
   table-layout: fixed;
   cursor:pointer;
-  padding-top:5px;
+  padding-top:0px;
 }
 .main-tab {
+  height:40px;
   display: table-cell;
   text-align:center;
+  padding-top:8px;
 }
 .main-tab a,
 .main-tab span,
@@ -170,12 +177,9 @@ body {
 .main-tab_active i{
   color:#f90;
 }
-
-.search-options-wrapper {
-  min-height:50px;
-  xline-height:50px;
-  background-color: #fff;
-}
+/* ======================
+ END  #main-footer 
+========================*/
 
 /* --- progress color ------- */
 .progress  {
@@ -226,4 +230,56 @@ body {
 
 .user-icon-big {
   width:128px;
+}
+
+/*-------------------- 
+ 来自bs  
+======================*/
+
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+
+
+.img-rounded {
+  border-radius: 15px;
+}
+.img-thumbnail {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.img-circle {
+  border-radius: 50%;
+}
+
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
 }

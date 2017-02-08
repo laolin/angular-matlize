@@ -1,33 +1,21 @@
 ﻿
-<div>
-  <div class="progress" ng-if='$ctrl.searchData.searching'>
-      <div class="indeterminate"></div>
-  </div>
-  
-  <div class="center-align" ng-if='$ctrl.searchData.resultSelected >= 0'>
-    <a class="waves-effect waves-light btn" 
-    ng-click="$ctrl.searchData.searchAroundSelected()">
-    在
-    {{$ctrl.searchData.result.data[$ctrl.searchData.resultSelected].name}}
-    周边搜索
-    </a>
-  </div>
-
-  <ul class="collection" ng-if='$ctrl.searchData.result.data'>
-    <li class="valign-wrapper">
-    <h6 class="valign">显示前{{$ctrl.searchData.result.data.length}}项</h6>
-	</li>
-    <li class="collection-item avatar"
+<div class="weui-panel weui-panel_access" ng-if='$ctrl.searchData.result.data'>
+    <div class="weui-panel__hd">
+      显示前{{$ctrl.searchData.result.data.length}}项
+    </div>
+    <div class="weui-panel__bd">
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"
+        
       ng-repeat='d in $ctrl.searchData.result.data'
-      ng-click='$ctrl.searchData.selectResult($index)'
-    >
-      <img src="assets/img/logo-32.png" alt="" class="circle" />
-      <span class="title">[{{$index+1}}]{{d.name}}</span>
-      <p>{{d.addr}}<br>
-         {{d.tel}}
-      </p>
-      <a class="secondary-content"><i class="fa fa-flag fa-lg" aria-hidden="true" title="Shop"></i></a>
-    </li>
-  </ul>
+        ng-click='$ctrl.searchData.selectResult($index)'>
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="assets/img/logo.png" alt="">
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">[{{$index+1}}]{{d.name}}</h4>
+                <p class="weui-media-box__desc">{{d.addr}}<br>
+         {{d.tel}}</p>
+            </div>
+        </a>
+    </div>
 </div>
-

@@ -13,7 +13,7 @@ angular.module('qgs-main')
   searchData.resultSelected=-1;
   searchData.searching=0;
   searchData.resultTime=0;
-  searchData.options={orderBy:'auto',searchInsideMap:true,countRes:''};
+  searchData.options={orderBy:'auto',searchInsideMap:true,countRes:20};
   searchData.searchWord='';
   searchData.searchPlaceholder='商户名称/地址/电话';
   searchData.searchList = []; //TODO: values will get from API
@@ -38,6 +38,7 @@ angular.module('qgs-main')
   searchData.selectResult=function(i) {
     searchData.resultSelected=i;
     if(!mapData.infoWindow)return;
+    if(i<0)return mapData.infoWindow.close();
     var lnglat=searchData.result.data[i].lnglat.split(',');
     mapData.infoWindow.setPosition(lnglat);
     

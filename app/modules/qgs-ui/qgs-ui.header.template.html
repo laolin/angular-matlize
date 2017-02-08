@@ -1,34 +1,12 @@
 
-    <div class="main-header_wrapper" ng-show='$ctrl.headerData.type == 1'>
-      <div class='main-header_left' style='background:url("{{$ctrl.headerData.logoUri}}") #f90 no-repeat;background-position: center;'></div>
-      <div class="main-header_main round-search">
-        <div class='round-search_icon'>
-          <i class='fa fa-search' ng-click="$ctrl.searchData.startSearch()"></i>
-        </div>
-        <div class='round-search_cancel' ng-if='$ctrl.searchData.searchWord'>
-          <i class='fa fa-times-circle' ng-click="$ctrl.searchData.clearSearchWord()"></i>
-        </div>
-        <input type="text" name="search"  ng-keyup="$event.keyCode == 13 && $ctrl.searchData.startSearch()"
-           placeholder="{{$ctrl.searchData.searchPlaceholder}}"
-           ng-model="$ctrl.searchData.searchWord" uib-typeahead="wd in $ctrl.searchData.searchList | filter:$viewValue | limitTo:8" />
+    <div class="main-header_container" >
+      <div ng-repeat = 'w in $ctrl.headerData.widgets' ng-class='w.side'>
+        <a href='{{w.link}}'>
+          <img ng-if='w.img' ng-src="{{w.img}}") /> 
+          <span ng-if='w.text'>{{w.text}}</span> 
+        </a>
       </div>
-      <div class='main-header_right'> 
-        <div>
-          <select ng-model="$ctrl.headerData.citySelected" class="mini">
-            <option ng-repeat="c in $ctrl.headerData.cityData.data" value="{{c}}">{{c}}</option>
-          </select>
-        </div>
-      </div> 
-    </div>
-    
-    <div class="main-header_wrapper" ng-show='$ctrl.headerData.type!=1'>
-      <div class='main-header_left'>
-        <a href="{{$ctrl.headerData.leftLink}}"><i class='fa fa-chevron-left big-logo'></i></a>
+      <div class="center">
+         <span ng-bind='$ctrl.headerData.headerText'></span>
       </div>
-      <div class="main-header_main">
-        <span class="main-header_title" ng-bind='$ctrl.headerData.headerText'></span>
-      </div>
-      <div class='main-header_right'>
-        <div ng-bind='$ctrl.headerData.headerMenu'></div>
-      </div> 
     </div>

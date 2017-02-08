@@ -20,7 +20,6 @@
     "angular-aria": "^1.6.1",
     "angular-messages": "^1.6.1",
     "jquery": "~2.1.4",
-    "materialize": "^0.97.8",
     "font-awesome": "^4.7.0",
     "js-md5": "md5#^0.4.2",
     "weui": "^1.1.1"
