@@ -13,28 +13,29 @@ angular.module('qgs-ui')
     svc.data.content='Message';
     svc.data.btn1='OK';
     svc.data.btn2='Option2';
-    
-    svc.data.answer=0;
+    svc.data.fn1=false;
+    svc.data.fn2=false;
     
     function getData() {
       return svc.data;
     }
-    function setText(d,sw) {
+    function setData(d) {
       svc.data.title=d.title;
       svc.data.content=d.content;
       svc.data.btn1=d.btn1;
       svc.data.btn2=d.btn2;
-      if(sw)show();
+      svc.data.fn1=d.fn1;
+      svc.data.fn2=d.fn2;
+      svc.data.show=d.show;
     }
     function show() {
       svc.data.show=true;
-      svc.data.answer=0;      
     }
     function hide() {
       svc.data.show=false;
     }
     return {
-      setText:setText,
+      setData:setData,
       getData:getData,
       show:show,
       hide:hide

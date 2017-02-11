@@ -3,8 +3,8 @@
 
 angular.module('qgs-main')
 .factory('qgsMainAppDataSearch',
-    ['$route','$location','$log','qgsMainApi','amapMainData','qgsMainAppDataUser',
-    function($route,$location,$log,qgsMainApi,amapMainData,qgsMainAppDataUser) {
+    ['$route','$location','$log','qgsMainApi','amapMainData','qgsMainAppDataUser','qgsUiDialogService',
+    function($route,$location,$log,qgsMainApi,amapMainData,qgsMainAppDataUser,qgsUiDialogService) {
   
   var searchData={};
   var mapData=amapMainData.getMapData();
@@ -76,21 +76,41 @@ angular.module('qgs-main')
       function(){
         searchData.searching=false;
         searchData.resultTime= +new Date();//用来标记搜索结果是否更新
+        if(searchData.result.errcode != 0) {
+          var msg={
+            title:'查询错误',
+            content:'Err#'+searchData.result.errcode+':'+searchData.result.msg,
+            btn1:'重登录',
+            fn1:function(){
+              $log.log('search result error!',searchData.result);
+              qgsMainAppDataUser.setUserData({});//Update to localStorage
+              $location.path('/wx-login');
+            },
+            btn2:'管他呢',
+            fn2:function(){},
+            show:1
+          }
+          qgsUiDialogService.setData(msg);
+          return;
+        }
+          
         var maxlat=-555;
         var maxlng=-555;
         var minlat=555;
         var minlng=555;
         var lnglat;
+        var n=0;//for执行完n还是0的话，说明都没有正常的坐标。不执行map.setBounds
         for(var i=searchData.result.data.length; i-- ; ) {
           lnglat=searchData.result.data[i].lnglat.split(',');
-          if(lnglat[0]==0 && lnglat[1]==0)continue;//0,0是没有数据，忽略。
+          if(lnglat[0]==0 && lnglat[1]==0)continue;
+          n++;
           maxlng=Math.max(maxlng,lnglat[0]);
           minlng=Math.min(minlng,lnglat[0]);
           maxlat=Math.max(maxlat,lnglat[1]);
           minlat=Math.min(minlat,lnglat[1]);
         }
         $log.log({lng:minlng,lat:minlat},{lng:maxlng,lat:maxlat});
-        if(mapData.map) {
+        if(n&&mapData.map) {
           mapData.map.setBounds(new AMap.Bounds([minlng,minlat],[maxlng,maxlat]))
         }
       }

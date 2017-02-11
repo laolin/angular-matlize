@@ -28,8 +28,9 @@ angular.module('qgs-main')
     footerData:footerData,
     searchData:searchData,
     userData:userData,
-    dialogData:dialogData,
     userDataService:qgsMainAppDataUser,
+    dialogData:dialogData,
+    dialogDataService:qgsUiDialogService,
     mapData:mapData
   }
   initClientId();
