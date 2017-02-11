@@ -14,12 +14,12 @@
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title">[{{$index+1}}]{{d.name}}</h4>
-                <p class="weui-media-box__desc">{{d.addr}}<br>
+                <p class="weui-media-box__desc">{{d.addr}} , 
                 {{d.tel}}</p>
             </div>
             <div class="weui-media-box__ft" 
               ng-if='$index == $ctrl.searchData.resultSelected'>
-             abc defg
+             <span class='weui-btn weui-btn_primary' ng-click="$ctrl.searchData.searchAroundSelected()">搜周边</span>
             </div>
         </a>
     </div>
