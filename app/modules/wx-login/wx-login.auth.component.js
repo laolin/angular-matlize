@@ -6,7 +6,7 @@ var idWxLoginDiv='wx-lg_cnt_'+(+new Date());
 
 angular.module('wx-login')
 .component('wxLoginAuth',{
-  template: '<div id="'+idWxLoginDiv+'" class="center-align">Loading weixin ...</div>',  
+  template: '<div id="'+idWxLoginDiv+'" class="text-center">Loading weixin ...</div>',  
   bindings: {
     pageTo: '<',
     appData: '<'
