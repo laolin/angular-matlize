@@ -6,8 +6,8 @@ var KEY_CLIENTID='QGS_appdata.clientId';
 
 angular.module('qgs-main')
 .factory('qgsMainAppData',
-    ['$route','$rootScope','$location','$log','$timeout','$http','$window','qgsMainAppConfig','qgsMainApi','amapMainData','qgsMainAppDataSearch','qgsMainAppDataUser',
-    function($route, $rootScope,$location,$log,$timeout,$http,$window,qgsMainAppConfig,qgsMainApi,amapMainData,qgsMainAppDataSearch,qgsMainAppDataUser) {
+    ['$route','$rootScope','$location','$log','$timeout','$http','$window','qgsMainAppConfig','qgsMainApi','amapMainData','qgsMainAppDataSearch','qgsMainAppDataUser','qgsUiDialogService',
+    function($route, $rootScope,$location,$log,$timeout,$http,$window,qgsMainAppConfig,qgsMainApi,amapMainData,qgsMainAppDataSearch,qgsMainAppDataUser,qgsUiDialogService) {
   
   var appCfg=qgsMainAppConfig();
 
@@ -16,6 +16,7 @@ angular.module('qgs-main')
   var searchData=qgsMainAppDataSearch.getSearchData();
   var userData=qgsMainAppDataUser.getUserData();
   var mapData=amapMainData.getMapData();
+  var dialogData=qgsUiDialogService.getData();
 
   var appData=this.appData={
     isWeixinBrowser:(/micromessenger/i).test(navigator.userAgent),
@@ -27,6 +28,7 @@ angular.module('qgs-main')
     footerData:footerData,
     searchData:searchData,
     userData:userData,
+    dialogData:dialogData,
     userDataService:qgsMainAppDataUser,
     mapData:mapData
   }
