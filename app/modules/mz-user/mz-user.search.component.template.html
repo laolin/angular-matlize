@@ -6,15 +6,20 @@
     <div class="weui-panel__bd">
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"
         
-      ng-repeat='d in $ctrl.searchData.result.data'
-        ng-click='$ctrl.searchData.selectResult($index)'>
+        ng-repeat='d in $ctrl.searchData.result.data'
+        ng-click='$ctrl.searchData.selectResult($index)'
+        ng-class='{hilight:$index == $ctrl.searchData.resultSelected}'>
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="assets/img/logo.png" alt="">
+                <img class="weui-media-box__thumb" src="assets/img/logo.png" alt="{{d.name}}">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title">[{{$index+1}}]{{d.name}}</h4>
                 <p class="weui-media-box__desc">{{d.addr}}<br>
-         {{d.tel}}</p>
+                {{d.tel}}</p>
+            </div>
+            <div class="weui-media-box__ft" 
+              ng-if='$index == $ctrl.searchData.resultSelected'>
+             abc defg
             </div>
         </a>
     </div>

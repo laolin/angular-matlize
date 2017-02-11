@@ -36,6 +36,7 @@ angular.module('qgs-main')
   }
   
   searchData.selectResult=function(i) {
+    if(searchData.resultSelected==i)i=-1;
     searchData.resultSelected=i;
     if(!mapData.infoWindow)return;
     if(i<0)return mapData.infoWindow.close();

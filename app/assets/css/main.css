@@ -72,55 +72,6 @@ start #main-header
 ========================*/
 
 
-
-
-.round-search {
-    border-radius: 15px;
-    border:1px solid #d80;
-    background-color:#fff;
-    height:32px;
-    line-height:32px;
-
-    margin:11px auto !important; 
-    padding:0 36px !important;
-    color:#f90;
-}
-.round-search_icon{
-  position:relative;
-  width:35px; 
-  float:left; 
-  color:#f90 !important; 
-  margin-left:-35px; 
-  text-align:center;
-}
-.round-search_cancel{
-  position:relative;
-  width:35px; 
-  float:right; 
-  color:#f90 !important;
-  margin-right:-35px; 
-  text-align:center;
-}
-.round-search input{
-    margin:0 0 !important; 
-    padding:0 0px !important;
-    border:0 !important;
-    height:32px !important;
-    font-size:14px !important;
-    width:100% !important;
-    height:56px;
-    float:left;
-    color:#f90 !important;
-}
-.round-search input:focus {
-    box-shadow: none !important;
-}
-
-.dropdown-content li span{
-  color:#d80 !important;
-}
-
-
 /* ======================
 start #main-container 
 ========================*/
@@ -131,6 +82,8 @@ start #main-container
   overflow: auto;
   background-color:#eee;
 }
+
+/* 这个定义影响范围有点大，以后要调整 */
 #main-container a,
 #main-container p,
 #main-container span,
@@ -200,11 +153,16 @@ start #main-footer
   text-align:center;
 }
 
-
-
+/*======================
+ app css  
+======================*/
 
 .user-icon-big {
   width:128px;
+}
+
+.hilight {
+  background-color: #fd2;
 }
 
 /*-------------------- 
@@ -278,6 +236,12 @@ div.weui-toast .weui-toast__content {
 
 .weui-btn_primary {
   background-color: #f90;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  display: -webkit-box;
+  height:46px;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
 }
 .weui-btn_primary:not(.weui-btn_disabled):active {
   background-color: #fd2;
