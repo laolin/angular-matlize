@@ -106,13 +106,6 @@ gulp.task('copyFonts1', function() {
     .pipe(gulp.dest(configObj.path.dist+'/assets/fonts'))
 });
 
-//materialize 的字体文件。这些字体其实没用上
-//所以这个可以不运行
-gulp.task('copyFonts2', function() {
-    return gulp.src( 'app/bower_components/materialize/fonts/roboto/*.*')
-    //.pipe(flatten())
-    .pipe(gulp.dest(configObj.path.dist+'/assets/fonts/roboto'))
-});
 
 gulp.task('wiredep', function() {
     return gulp.src( 'app/index-src.html')
